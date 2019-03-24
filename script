@@ -83,7 +83,11 @@ cd /0.1 ; find ./ -type l|sort >/tmp/0.1-links
 cd /0.x ; find ./ -type l|sort >/tmp/0.x-links
 diff /tmp/0.1-links /tmp/0.x-links |tee /gh-pages/link-diffs.txt
 
-# Get rid of symlinks to make life easy for diff.
+## Remove the directory that will become a link.
+
+rm -rf /0.1/usr/include/vm 
+
+## Get rid of all symlinks to make life easy for diff.
 
 find /0.?/ -type l -exec rm {} \;
 
@@ -92,11 +96,29 @@ find /0.?/ -type l -exec rm {} \;
 find /0.1/ -type f -name "*.o" -exec rm -rf {} \;
 find /0.1/ -type f -name "*.a" -exec rm -rf {} \;
 
-## Dump the differences.
+## The diff should be reasonably sized now. Dump the interim differences.
+
+diff -qrN /0.1/etc /0.x/etc |tee /gh-pages/etc-i-diffs.txt
+diff -qrN /0.1/usr /0.x/usr |tee /gh-pages/usr-i-diffs.txt
+diff -qrN /0.1/var /0.x/var |tee /gh-pages/var-i-diffs.txt
+
+#### Check /etc
+## Will have to sift through these.
+
+#### Check /usr
+## A bit odd, the ufs dir forks in tree.
+
+cp -r -p /0.1/usr/src/sys.386bsd/ufs /0.1/usr/src/
+
+#### Check /var
+## There seems to be nothing to upgrade from there.
+
+rm -rf /0.?/var/
+
+## Dump the differences again.
 
 diff -qrN /0.1/etc /0.x/etc |tee /gh-pages/etc-diffs.txt
 diff -qrN /0.1/usr /0.x/usr |tee /gh-pages/usr-diffs.txt
-diff -qrN /0.1/var /0.x/var |tee /gh-pages/var-diffs.txt
 
 cd /gh-pages
 index
