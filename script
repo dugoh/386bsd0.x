@@ -101,9 +101,9 @@ find /0.1/ -type f -name "*.a" -exec rm -rf {} \;
 
 ## The diff should be reasonably sized now. Dump the interim differences.
 
-diff -qrN /0.1/etc /0.x/etc |tee /gh-pages/etc-i-diffs.txt
-diff -qrN /0.1/usr /0.x/usr |tee /gh-pages/usr-i-diffs.txt
-diff -qrN /0.1/var /0.x/var |tee /gh-pages/var-i-diffs.txt
+#diff -qrN /0.1/etc /0.x/etc |tee /gh-pages/etc-i-diffs.txt
+#diff -qrN /0.1/usr /0.x/usr |tee /gh-pages/usr-i-diffs.txt
+#diff -qrN /0.1/var /0.x/var |tee /gh-pages/var-i-diffs.txt
 
 #### Check /etc
 
@@ -123,6 +123,14 @@ find /0.?/etc/ -type f ! -name disktab -exec rm -rf {} \;
 
 cp -r -p /0.1/usr/src/sys.386bsd/ufs /0.1/usr/src/
 
+## Don't delete 0.1 binaries, don't pull in 0.x binaries.
+
+rm $(file $(diff -qr /0.?/usr \
+            |grep "^Only"     \
+            |sed -e's/: /\//' \
+            |cut -f 3         \
+            )|grep "pure executable"|cut -d':' -f1)
+
 #### Check /var
 
 ## There seems to be nothing to upgrade from there.
@@ -131,8 +139,8 @@ rm -rf /0.?/var/
 
 ## Dump the differences again.
 
-diff -qrN /0.1/etc /0.x/etc |tee /gh-pages/etc-diffs.txt
-diff -qrN /0.1/usr /0.x/usr |tee /gh-pages/usr-diffs.txt
+diff -qr /0.1/etc /0.x/etc |tee /gh-pages/etc-diffs.txt
+diff -qr /0.1/usr /0.x/usr |tee /gh-pages/usr-diffs.txt
 
 cd /gh-pages
 index
