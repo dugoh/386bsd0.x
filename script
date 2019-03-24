@@ -113,6 +113,10 @@ for file in $(find /0.x/etc -type f -size +0 -exec grep -zaPL [^\0] {} \;); do
     rm "${file}"
 done
 
+## The files differing in /etc/ are mostly local. Only disktab is worth keeping.
+
+find /0.?/etc/ -type f ! -name disktab -exec rm -rf {} \;
+
 #### Check /usr
 
 ## A bit odd, the ufs dir forks in tree.
