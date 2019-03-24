@@ -34,7 +34,7 @@ push() {
 
 for i in a b c;
     do wget -nv -O - https://dugoh.github.io/386bsd0.1/disk.part-a${i};
-done|bunzip2 >disk.img
+done|bunzip2 >disk.img || exit 1
 
 modprobe ufs
 mount -o loop,ro -t ufs disk.img /mnt/
