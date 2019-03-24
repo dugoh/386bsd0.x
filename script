@@ -33,7 +33,7 @@ push() {
 ## Grab a clean 0.1 install and mount it.
 
 for i in a b c;
-    do wget -O - https://dugoh.github.io/386bsd0.1/disk.part-a${i};
+    do wget -nv -O - https://dugoh.github.io/386bsd0.1/disk.part-a${i};
 done|bunzip2 >disk.img
 
 modprobe ufs
@@ -61,6 +61,33 @@ mkdir /0.x
 cp -R -p etc /0.x/
 cp -R -p usr /0.x/
 cp -R -p var /0.x/
+
+## Some more reorganisation to solve the high number of differences.
+
+## There is no usr/othersrc in 0.x.
+
+mv /0.1/usr/othersrc/[cegps]* /0.1/usr/src/
+rm -rf /0.1/usr/othersrc/
+rm -rf /0.*/usr/src/sys.386bsd/compile/*
+
+## There are no games in share in 0.x, only a book about chess.
+
+find /0.1/usr/share/games/* -type d -exec rm -rf {} \;
+
+## Apply 0.x .gitignore to 0.1
+
+find /0.1/ -type f -name "*.o" -o -name "*.a" -exec rm -rf {} \;
+
+## Check for any new symlinks.
+
+cd /0.1 ; find ./ -type l|sort >/tmp/0.1-links
+cd /0.x ; find ./ -type l|sort >/tmp/0.x-links
+diff /tmp/0.1-links /tmp/0.x-links >/tmp/links-diff
+cat /tmp/links-diff
+
+# Get rid of symlinks to make life easy for diff.
+
+find /0.?/ -type l -exec rm {} \;
 
 ## Show/Push the differences
 
