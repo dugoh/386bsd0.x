@@ -1,0 +1,7 @@
+################################################################################
+set -x
+cd /
+## Find an upgrade path to 0.x. A quick look in the git repo shows a push of a
+## running machine. Due to the limitations of source code control systems this
+## will be very hard to boot directly. Booting the original and upgrading it
+## looks like the way to go.
