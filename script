@@ -5,3 +5,67 @@ cd /
 ## running machine. Due to the limitations of source code control systems this
 ## will be very hard to boot directly. Booting the original and upgrading it
 ## looks like the way to go.
+
+index() {
+    echo "<HTML><HEAD><TITLE>LINKS</TITLE></HEAD><BODY><ul>" >index.html
+    for file in $(ls|egrep -v "index.html| "); do \
+        (\
+            printf '<li><a href="'; \
+            printf "${file}";       \
+            printf '">';            \
+            printf "${file}";       \
+            printf '</a></li>\n'    \
+        )>>index.html;              \
+    done
+    echo "</ul></BODY></HTML>" >>index.html
+}
+
+push() {
+    GHP_URL=https://${GHP_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+    git init
+    git config user.name "${USER}"
+    git config user.email "${GHP_MAIL}"
+    git add .
+    git commit -m "Deploy to GitHub Pages"
+    git push --force --quiet "${GHP_URL}" master:gh-pages
+}
+
+## Grab a clean 0.1 install and mount it.
+
+for i in a b c;
+    do wget -O - https://dugoh.github.io/386bsd0.1/disk.part-a${i};
+done|bunzip2 >disk.img
+
+mdconfig -d -u 0
+mdconfig -a -t vnode -u 0 -f disk.img
+mount -t ufs -o ro /dev/md0 /mnt/
+
+## Copy out the relevant directories.
+
+mkdir /0.1
+cd /mnt
+cp -R -p etc /0.1/
+cp -R -p usr /0.1/
+cp -R -p var /0.1/
+
+## Clone the 386bsd github repo and checkout 0.x.
+
+cd /
+git clone https://github.com/386bsd/386bsd.git
+cd 386bsd
+cat .gitignore
+git checkout 0.1
+
+## Copy out the relevant directories to diff
+
+mkdir /0.x
+cp -R -p etc /0.x/
+cp -R -p usr /0.x/
+cp -R -p var /0.x/
+
+## Show/Push the differences
+
+mkdir /g; cd /g
+diff -qrN /0.1/ /0.x/ |tee differences.txt
+index
+push
