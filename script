@@ -87,12 +87,12 @@ diff /tmp/0.1-links /tmp/0.x-links |tee /gh-pages/link-diffs.txt
 
 find /0.?/ -type l -exec rm {} \;
 
-## Apply 0.x .gitignore to 0.1
+## Apply 0.x .gitignore to 0.1.
 
 find /0.1/ -type f -name "*.o" -exec rm -rf {} \;
-find /0.1/  type f -name "*.a" -exec rm -rf {} \;
+find /0.1/ -type f -name "*.a" -exec rm -rf {} \;
 
-## dump the differences
+## Dump the differences.
 
 diff -qrN /0.1/etc /0.x/etc |tee /gh-pages/etc-diffs.txt
 diff -qrN /0.1/usr /0.x/usr |tee /gh-pages/usr-diffs.txt
