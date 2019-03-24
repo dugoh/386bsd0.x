@@ -71,7 +71,10 @@ cp -R -p var /0.x/
 
 mv /0.1/usr/othersrc/[cegps]* /0.1/usr/src/
 rm -rf /0.1/usr/othersrc/
-rm -rf /0.*/usr/src/sys.386bsd/compile/*
+
+## Clean out kernel build remnants
+
+rm -rf /0.?/usr/src/sys.386bsd/compile/*
 
 ## There are no games in share in 0.x, only a book about chess.
 
@@ -103,14 +106,21 @@ diff -qrN /0.1/usr /0.x/usr |tee /gh-pages/usr-i-diffs.txt
 diff -qrN /0.1/var /0.x/var |tee /gh-pages/var-i-diffs.txt
 
 #### Check /etc
-## Will have to sift through these.
+
+## Some files got corrupt, get rid of them.
+
+for file in $(find /0.x/etc -type f -size +0 -exec grep -zaPL [^\0] {} \;); do
+    rm "${file}"
+done
 
 #### Check /usr
+
 ## A bit odd, the ufs dir forks in tree.
 
 cp -r -p /0.1/usr/src/sys.386bsd/ufs /0.1/usr/src/
 
 #### Check /var
+
 ## There seems to be nothing to upgrade from there.
 
 rm -rf /0.?/var/
