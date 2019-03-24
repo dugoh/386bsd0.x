@@ -36,9 +36,8 @@ for i in a b c;
     do wget -O - https://dugoh.github.io/386bsd0.1/disk.part-a${i};
 done|bunzip2 >disk.img
 
-mdconfig -d -u 0
-mdconfig -a -t vnode -u 0 -f disk.img
-mount -t ufs -o ro /dev/md0 /mnt/
+modprobe ufs
+mount -o loop,ro -t ufs disk.img /mnt/
 
 ## Copy out the relevant directories.
 
