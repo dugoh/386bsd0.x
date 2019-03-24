@@ -113,9 +113,9 @@ for file in $(find /0.x/etc -type f -size +0 -exec grep -zaPL [^\0] {} \;); do
     rm "${file}"
 done
 
-## The files differing in /etc/ are mostly local. Only disktab is worth keeping.
+## The files differing in /etc/ are mostly local. Clean most of it out.
 
-find /0.?/etc/ -type f ! -name disktab -exec rm -rf {} \;
+find /0.?/etc/ -type f ! -name disktab ! -name bin.profile -exec rm -rf {} \;
 
 #### Check /usr
 
@@ -139,8 +139,18 @@ rm -rf /0.?/var/
 
 ## Dump the differences again.
 
+echo etc
 diff -qr /0.1/etc /0.x/etc |tee /gh-pages/etc-diffs.txt
+echo usr
 diff -qr /0.1/usr /0.x/usr |tee /gh-pages/usr-diffs.txt
+
+## This is probably all that's needed to upgrade.
+echo totar
+diff -qr /0.x/ /0.1/ \
+  |grep -v "^Only in /0.1/" \
+  |sed -e's/: /\//' \
+       -e's/Only in/OnlyIn/' \
+  |awk '{print $2}'
 
 cd /gh-pages
 index
