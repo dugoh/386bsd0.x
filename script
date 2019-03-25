@@ -250,7 +250,7 @@ qemu-system-i386                                 \
                 -net nic,model=ne2k_isa          \
                 -no-reboot                       \
                 -m 64                            \
-                -startdate "$(date +%Y-%m-%d)"'
+                -startdate "$(date +%Y-%m-%d)"
 
 touch out
 (
