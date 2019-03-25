@@ -226,7 +226,7 @@ touch out
     sleep 5;
   done
   sleep 5
-  slowcat ./4 4 1
+  slowcat ./4 1 1
 )| TERM=vt100 bochs -q -f bochsrc |tee -a out 
 mv out out_4.txt
 
