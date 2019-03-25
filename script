@@ -211,6 +211,8 @@ root
 
 exec sh
 date $(date +%y%m%d%H%M.%S)
+$(printf '\n\n\n\n\n\n\n')
+date
 cd /
 tar -xvf /dev/rfd0a .//upgrade.sh
 /upgrade.sh
