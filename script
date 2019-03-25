@@ -154,11 +154,11 @@ diff -qr /0.x/ /0.1/ \
 
 ## Tar it up to flop.
 
-( tar cf - $( diff -qr /0.x/usr /0.1/usr \
-              |grep -v "^Only in /0.1"   \
-              |sed -e's/: /\//'          \
-                   -e's/.*0\.x\///'      \
-                   -e's/ .*//'           \
+( tar cf - $( diff -qr /0.x/ /0.1/     \
+              |grep -v "^Only in /0.1" \
+              |sed -e's/: /\//'        \
+                   -e's/.*0\.x\///'    \
+                   -e's/ .*//'         \
             )
   dd if=/dev/zero count=1474560
 ) |head -c 1474560 >/boot.img
