@@ -228,6 +228,39 @@ touch out
 )| TERM=vt100 bochs -q -f bochsrc |tee -a out 
 mv out out_4.txt
 
+## Keystrokes to feed to QEMU
+
+cat >5 <<__EOF__
+root
+
+exec sh
+date
+sleep 10
+sync; sync; sync
+shutdown -rf now
+__EOF__
+
+## Try QEMU with new kernel.
+
+touch out
+(
+  until egrep -q 'login:|console' out ; do
+    sleep 5;
+  done
+  sleep 5
+  slowcat ./5 1 .5
+)| script -f -c 'qemu                            \
+                -curses                          \
+                -hda disk.img                    \
+                -M isapc                         \
+                -net nic                         \
+                -no-reboot                       \
+                -m 64                            \
+                -startdate "$(date +%Y-%m-%d)"'  \
+ |tee -a out
+mv out out_5.txt
+
+
 ## Push to gh-pages
 cd /gh-pages
 cp /boot.img ./
