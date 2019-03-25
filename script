@@ -168,8 +168,6 @@ rm -rf /0.?/var/
 ## Add an upgrade script.
 
 cat >/0.x/upgrade.sh <<__EOF__
-date $(date +%y%m%d%H%M.%S)
-cd /
 mv /usr/othersrc/[cegps]* /usr/src/
 rm -rf /0.1/usr/othersrc/
 find /usr/share/games/* -type d -exec rm -rf {} \;
@@ -212,6 +210,9 @@ cat >4 <<__EOF__
 root
 
 exec sh
+date $(date +%y%m%d%H%M.%S)
+cd /
+tar -xvf /dev/rfd0a .//upgrade.sh
 /upgrade.sh
 __EOF__
 
