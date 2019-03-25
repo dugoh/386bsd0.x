@@ -207,6 +207,7 @@ tar -tvf /boot.img
 
 ## Keystrokes to feed to bochs
 
+cd /
 cat >4 <<__EOF__
 root
 
@@ -214,7 +215,8 @@ exec sh
 /upgrade.sh
 __EOF__
 
-cd /
+## Run Bochs.
+
 touch out
 (
   until egrep -q 'login:|console' out ; do
