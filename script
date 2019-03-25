@@ -185,6 +185,7 @@ make
 mv /386bsd /386bsd.old
 cp 386bsd /386bsd
 sync; sync; sync
+echo Das Boot!, Das Boot Idiot!
 shutdown -rf now
 __EOF__
 chmod +x /0.x/upgrade.sh
