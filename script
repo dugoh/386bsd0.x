@@ -168,7 +168,7 @@ rm -rf /0.?/var/
 ## Add an upgrade script.
 
 cat >/0.x/upgrade.sh <<__EOF__
-date 1903250331.34
+date $(date +%y%m%d%H%M.%S)
 cd /
 mv /usr/othersrc/[cegps]* /usr/src/
 rm -rf /0.1/usr/othersrc/
@@ -188,8 +188,9 @@ cp 386bsd /386bsd
 sync; sync; sync
 shutdown -rf now
 __EOF__
+chmod +x /0.x/upgrade.sh
 
-## Tar it up to flop.
+## Tar updated files to floppy.
 cd /0.x
 ( tar cf - $( diff -qr /0.x/ /0.1/     \
               |grep -v "^Only in /0.1" \
@@ -200,10 +201,33 @@ cd /0.x
   dd if=/dev/zero count=1474560
 ) |head -c 1474560 >/boot.img
 
+## Show contents
+
 tar -tvf /boot.img
+
+## Keystrokes to feed to bochs
+
+cat >4 <<__EOF__
+root
+
+exec sh
+/upgrade.sh
+__EOF__
+
+cd /
+touch out
+(
+  until egrep -q 'login:|console' out ; do
+    sleep 5;
+  done
+  sleep 5
+  slowcat ./4 4 1
+)| TERM=vt100 bochs -q -f bochsrc |tee -a out 
+mv out out_4.txt
 
 ## Push to gh-pages
 cd /gh-pages
 cp /boot.img ./
+cp /out_4.txt ./
 index
 push
