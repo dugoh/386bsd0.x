@@ -152,6 +152,41 @@ diff -qr /0.x/ /0.1/ \
        -e's/Only in/OnlyIn/' \
   |awk '{print $2}'
 
+## Tar it up to flop.
+
+( tar cf - $( diff -qr /0.x/usr /0.1/usr \
+              |grep -v "^Only in /0.1"   \
+              |sed -e's/: /\//'          \
+                   -e's/.*0\.x\///'      \
+                   -e's/ .*//'           \
+            )
+  dd if=/dev/zero count=1474560
+) |head -c 1474560 >/boot.img
+
+## Add an upgrade script.
+
+cat >/0.x/upgrade.sh <<__EOF__
+date 1903250331.34
+cd /
+mv /usr/othersrc/[cegps]* /usr/src/
+rm -rf /0.1/usr/othersrc/
+find /usr/share/games/* -type d -exec rm -rf {} \;
+rm -rf /0.1/usr/include/vm 
+ln -s ../src/sys.386bsd/vm /usr/include/vm
+cp -R -p /usr/src/sys.386bsd/ufs /usr/src/
+tar -xvf /dev/rfd0a
+rm -r /sys/compile/*
+cd /sys/i386/conf
+config GENERICISA
+cd /sys/compile/GENERICISA
+make depend
+make
+mv /386bsd /386bsd.old
+cp 386bsd /386bsd
+sync; sync; sync
+shutdown -rf now
+__EOF__
+
 cd /gh-pages
 index
 push
