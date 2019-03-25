@@ -3,6 +3,7 @@ dist: trusty
 addons:
   apt:
     packages:
+    - bochs-term
     - libncurses5-dev
 language: bash
 
