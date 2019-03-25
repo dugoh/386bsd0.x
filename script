@@ -243,69 +243,34 @@ __EOF__
 
 ## Try QEMU with new kernel.
 
-qemu-system-i386                                 \
-                -cpu qemu32                      \
-                -curses                          \
-                -hda disk.img                    \
-                -M isapc                         \
-                -net nic,model=ne2k_isa          \
-                -no-reboot                       \
-                -m 64                            \
-                -startdate "$(date +%Y-%m-%d)"
-
-qemu-i386                                 \
-                -cpu qemu32                      \
-                -curses                          \
-                -hda disk.img                    \
-                -M isapc                         \
-                -net nic,model=ne2k_isa          \
-                -no-reboot                       \
-                -m 64                            \
-                -startdate "$(date +%Y-%m-%d)"
-
-qemu-system-i386                                 \
-                -cpu qemu32                      \
-                -curses                          \
-                -hda disk.img                    \
-                -M isapc                         \
-                -net nic,model=ne2k_isa          \
-                -no-reboot                       \
-                -m 4                            \
-                -startdate "$(date +%Y-%m-%d)"
-
-qemu-i386                                 \
-                -cpu qemu32                      \
-                -curses                          \
-                -hda disk.img                    \
-                -M isapc                         \
-                -net nic,model=ne2k_isa          \
-                -no-reboot                       \
-                -m 4                            \
-                -startdate "$(date +%Y-%m-%d)"
-
-touch out
-(
-  until egrep -q 'login:|console' out ; do
-    sleep 5;
-  done
-  sleep 5
-  slowcat ./5 1 .5
-)| script -f -c 'qemu-system-i386                \
-                -cpu qemu32                      \
-                -curses                          \
-                -hda disk.img                    \
-                -M isapc                         \
-                -net nic,model=ne2k_isa          \
-                -no-reboot                       \
-                -m 64                            \
-                -startdate "$(date +%Y-%m-%d)"'  \
- |tee -a out
-mv out out_5.txt
-
+#touch out
+#(
+#  until egrep -q 'login:|console' out ; do
+#    sleep 5;
+#  done
+#  sleep 5
+#  slowcat ./5 1 .5
+#)| script -f -c 'qemu-system-i386                \
+#                -cpu qemu32                      \
+#                -curses                          \
+#                -hda disk.img                    \
+#                -M isapc                         \
+#                -net nic,model=ne2k_isa          \
+#                -no-reboot                       \
+#                -m 64                            \
+#                -startdate "$(date +%Y-%m-%d)"'  \
+# |tee -a out
+#mv out out_5.txt
 
 ## Push to gh-pages
 cd /gh-pages
-cp /boot.img ./
-cp /out_4.txt ./
+mv /boot.img ./
+mv ../disk.img ./
+bzip2 --best disk.img
+split -b 50m "disk.img.bz2" "qdisk.part-"
+rm disk.img.bz2
+mv ../bochsrc ./
+mv ../tunconfig ./
+cp /out_*.txt ./
 index
 push
