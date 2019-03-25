@@ -47,9 +47,9 @@ mkdir /gh-pages
 
 for i in a b c;
     do wget -nv -O - https://dugoh.github.io/386bsd0.1/disk.part-a${i};
-done|bunzip2 >disk.img || exit 1
-wget -nv https://dugoh.github.io/386bsd0.1/bochsrc
-wget -nv https://dugoh.github.io/386bsd0.1/tunconfig
+done|bunzip2 >/disk.img || exit 1
+wget -nv https://dugoh.github.io/386bsd0.1/bochsrc || exit
+wget -nv https://dugoh.github.io/386bsd0.1/tunconfig || exit
 
 modprobe ufs
 mount -o loop,ro -t ufs disk.img /mnt/
@@ -63,12 +63,13 @@ cp -R -p usr /0.1/
 cp -R -p var /0.1/
 
 ## Clone the 386bsd github repo and checkout 0.x.
-
+## 75c3124387dda5db245b62552d4da62cf60a82de Nov 2017 <- to test tracking
+## aeaabcf90cebcb2c70dae2e3f22e0bbead5927a9 Jan 2019 <- current
 cd /
-git clone https://github.com/386bsd/386bsd.git
+git clone --depth=50 --branch=0.1 https://github.com/386bsd/386bsd.git
 cd 386bsd
+git checkout -qf aeaabcf90cebcb2c70dae2e3f22e0bbead5927a9
 cat .gitignore
-git checkout 0.1
 
 ## Copy out the relevant directories to diff
 
@@ -84,7 +85,7 @@ cp -R -p var /0.x/
 mv /0.1/usr/othersrc/[cegps]* /0.1/usr/src/
 rm -rf /0.1/usr/othersrc/
 
-## Clean out kernel build remnants
+## Clean out kernel build remnants.
 
 rm -rf /0.?/usr/src/sys.386bsd/compile/*
 
@@ -133,7 +134,7 @@ find /0.?/etc/ -type f ! -name disktab ! -name bin.profile -exec rm -rf {} \;
 
 ## A bit odd, the ufs dir forks in tree.
 
-cp -r -p /0.1/usr/src/sys.386bsd/ufs /0.1/usr/src/
+cp -R -p /0.1/usr/src/sys.386bsd/ufs /0.1/usr/src/
 
 ## Don't delete 0.1 binaries, don't pull in 0.x binaries.
 
@@ -151,18 +152,18 @@ rm -rf /0.?/var/
 
 ## Dump the differences again.
 
-echo etc
-diff -qr /0.1/etc /0.x/etc |tee /gh-pages/etc-diffs.txt
-echo usr
-diff -qr /0.1/usr /0.x/usr |tee /gh-pages/usr-diffs.txt
+#echo etc
+#diff -qr /0.1/etc /0.x/etc |tee /gh-pages/etc-diffs.txt
+#echo usr
+#diff -qr /0.1/usr /0.x/usr |tee /gh-pages/usr-diffs.txt
 
 ## This is probably all that's needed to upgrade.
-echo totar
-diff -qr /0.x/ /0.1/ \
-  |grep -v "^Only in /0.1/" \
-  |sed -e's/: /\//' \
-       -e's/Only in/OnlyIn/' \
-  |awk '{print $2}'
+#echo totar
+#diff -qr /0.x/ /0.1/ \
+#  |grep -v "^Only in /0.1/" \
+#  |sed -e's/: /\//' \
+#       -e's/Only in/OnlyIn/' \
+#  |awk '{print $2}'
 
 ## Add an upgrade script.
 
@@ -199,7 +200,10 @@ cd /0.x
   dd if=/dev/zero count=1474560
 ) |head -c 1474560 >/boot.img
 
+tar -tvf /boot.img
+
 ## Push to gh-pages
 cd /gh-pages
+cp /boot.img ./
 index
 push
