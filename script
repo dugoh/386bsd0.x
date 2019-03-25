@@ -249,11 +249,12 @@ touch out
   done
   sleep 5
   slowcat ./5 1 .5
-)| script -f -c 'qemu                            \
+)| script -f -c 'qemu-system-i386                \
+                -cpu qemu32                      \
                 -curses                          \
                 -hda disk.img                    \
                 -M isapc                         \
-                -net nic                         \
+                -net nic,model=ne2k_isa          \
                 -no-reboot                       \
                 -m 64                            \
                 -startdate "$(date +%Y-%m-%d)"'  \
