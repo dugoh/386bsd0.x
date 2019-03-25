@@ -190,11 +190,11 @@ shutdown -rf now
 __EOF__
 
 ## Tar it up to flop.
-
+cd /0.x
 ( tar cf - $( diff -qr /0.x/ /0.1/     \
               |grep -v "^Only in /0.1" \
               |sed -e's/: /\//'        \
-                   -e's/.*0\.x\///'    \
+                   -e's/.*0\.x\//./'    \
                    -e's/ .*//'         \
             )
   dd if=/dev/zero count=1474560
