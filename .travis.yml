@@ -9,4 +9,4 @@ language: bash
 
 script:
   - chmod +x ./script
-  - sudo ./script
+  - sudo /bin/bash -c ./script
