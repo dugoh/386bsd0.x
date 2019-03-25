@@ -28,6 +28,17 @@ push() {
     git push --force --quiet "${GHP_URL}" master:gh-pages
 }
 
+slowcat() {
+    [[ -z "${3}" ]] && echo usage: $0 file chunksize waittime && return 1
+    c=0
+    b=$(wc -c <${1})
+    while [ ${c} -lt ${b} ]; do
+        dd if=${1} bs=1 count=${2} skip=${c} 2>/dev/null
+        (( c = c + ${2} ))
+        sleep ${3}
+    done
+}
+
 ## init
 set -x
 cd /
@@ -38,6 +49,8 @@ mkdir /gh-pages
 for i in a b c;
     do wget -nv -O - https://dugoh.github.io/386bsd0.1/disk.part-a${i};
 done|bunzip2 >disk.img || exit 1
+wget -nv https://dugoh.github.io/386bsd0.1/bochsrc
+wget -nv https://dugoh.github.io/386bsd0.1/tunconfig
 
 modprobe ufs
 mount -o loop,ro -t ufs disk.img /mnt/
@@ -152,17 +165,6 @@ diff -qr /0.x/ /0.1/ \
        -e's/Only in/OnlyIn/' \
   |awk '{print $2}'
 
-## Tar it up to flop.
-
-( tar cf - $( diff -qr /0.x/ /0.1/     \
-              |grep -v "^Only in /0.1" \
-              |sed -e's/: /\//'        \
-                   -e's/.*0\.x\///'    \
-                   -e's/ .*//'         \
-            )
-  dd if=/dev/zero count=1474560
-) |head -c 1474560 >/boot.img
-
 ## Add an upgrade script.
 
 cat >/0.x/upgrade.sh <<__EOF__
@@ -187,6 +189,18 @@ sync; sync; sync
 shutdown -rf now
 __EOF__
 
+## Tar it up to flop.
+
+( tar cf - $( diff -qr /0.x/ /0.1/     \
+              |grep -v "^Only in /0.1" \
+              |sed -e's/: /\//'        \
+                   -e's/.*0\.x\///'    \
+                   -e's/ .*//'         \
+            )
+  dd if=/dev/zero count=1474560
+) |head -c 1474560 >/boot.img
+
+## Push to gh-pages
 cd /gh-pages
 index
 push
