@@ -195,11 +195,8 @@ strip trimhd splice
 make clean
 make
 make install
-disklabel -r
-cat /etc/disktab
-disklabel -r -w wd0 something something2 /usr/mdec/wdboot /usr/mdec/bootw
+disklabel -r -w wd0 vbox generic /usr/mdec/wdboot /usr/mdec/bootwd
 sync; sync; sync
-echo Das Boot!, Das Boot Idiot!
 shutdown -rf now
 __EOF__
 chmod +x /0.x/upgrade.sh
@@ -257,24 +254,24 @@ __EOF__
 
 ## Try QEMU with new kernel.
 
-#touch out
-#(
-#  until egrep -q 'login:|console' out ; do
-#    sleep 5;
-#  done
-#  sleep 5
-#  slowcat ./5 1 .5
-#)| script -f -c 'qemu-system-i386                \
-#                -cpu qemu32                      \
-#                -curses                          \
-#                -hda disk.img                    \
-#                -M isapc                         \
-#                -net nic,model=ne2k_isa          \
-#                -no-reboot                       \
-#                -m 64                            \
-#                -startdate "$(date +%Y-%m-%d)"'  \
-# |tee -a out
-#mv out out_5.txt
+touch out
+(
+  until egrep -q 'login:|console' out ; do
+    sleep 5;
+  done
+  sleep 5
+  slowcat ./5 1 .5
+)| script -f -c 'qemu-system-i386                \
+                -cpu qemu32                      \
+                -curses                          \
+                -hda disk.img                    \
+                -M isapc                         \
+                -net nic,model=ne2k_isa          \
+                -no-reboot                       \
+                -m 64                            \
+                -startdate "$(date +%Y-%m-%d)"'  \
+ |tee -a out
+mv out out_5.txt
 
 ## Push to gh-pages
 cd /gh-pages
