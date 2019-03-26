@@ -184,6 +184,20 @@ make depend
 make
 mv /386bsd /386bsd.old
 cp 386bsd /386bsd
+cd /usr/src/sbin/disklabel
+make clean
+make
+make install
+/usr/src/sys.386bsd/i386/stand
+gcc -o trimhd trimhd.c
+gcc -o splice splice.c
+strip trimhd splice
+make clean
+make
+make install
+disklabel -r
+cat /etc/disktab
+disklabel -r -w wd0 something something2 /usr/mdec/wdboot /usr/mdec/bootw
 sync; sync; sync
 echo Das Boot!, Das Boot Idiot!
 shutdown -rf now
