@@ -185,9 +185,11 @@ make
 mv /386bsd /386bsd.old
 cp 386bsd /386bsd
 cd /usr/src/sbin/disklabel
+ls -l /sbin/disklabel
 make clean
 make
 make install
+ls -l /sbin/disklabel
 cd /usr/src/sys.386bsd/i386/stand
 gcc -o trimhd trimhd.c
 gcc -o splice splice.c
