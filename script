@@ -197,6 +197,7 @@ make
 make install
 echo paths seem b0rked, install from here
 disklabel -r -w wd0 vbox generic ./wdboot ./bootwd
+disklabel -r
 sync; sync; sync
 shutdown -rf now
 __EOF__
