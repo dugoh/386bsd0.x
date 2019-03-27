@@ -189,9 +189,13 @@ make clean
 make
 make install
 ls -ld /usr/src/sys.386bsd/i386/stand
+echo +
 find / -type d -name stand
-ls -ld `find / -type d -name stand`
+echo +
+ls -ld \`find / -type d -name stand\`
+echo +
 cd /usr/src/sys.386bsd/i386/stand
+echo +
 gcc -o trimhd trimhd.c
 gcc -o splice splice.c
 strip trimhd splice
