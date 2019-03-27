@@ -237,8 +237,9 @@ touch out
   done
   sleep 5
   slowcat ./4 1 2
-)| TERM=vt100 bochs -q -f bochsrc |tee -a out 
+)| TERM=vt100 bochs -q -f bochsrc |sed 's/[\x01-\x1F\x7F]//g'|tee -a out 
 mv out out_4.txt
+
 
 ## Keystrokes to feed to QEMU
 
