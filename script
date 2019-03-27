@@ -188,22 +188,15 @@ cd /usr/src/sbin/disklabel
 make clean
 make
 make install
-ls -ld /usr/src/sys.386bsd/i386/stand
-echo +
-find / -type d -name stand
-echo +
-cat /usr/src/sys.386bsd/stand/Makefile
-echo +
 cd /usr/src/sys.386bsd/i386/stand
-echo +
-cat Makefile
 gcc -o trimhd trimhd.c
 gcc -o splice splice.c
 strip trimhd splice
 make clean
 make
 make install
-disklabel -r -w wd0 vbox generic /usr/mdec/wdboot /usr/mdec/bootwd
+echo paths seem b0rked, install from here
+disklabel -r -w wd0 vbox generic ./wdboot ./bootwd
 sync; sync; sync
 shutdown -rf now
 __EOF__
