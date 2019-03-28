@@ -248,7 +248,7 @@ touch out
   done
   sleep 5
   slowcat ./4 1 2
-)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold |sed 's/[\x01-\x1F\x7F]//g'
+)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold -w 82|sed 's/[\x01-\x1F\x7F]//g'
 mv out out_4.txt
 
 
@@ -272,7 +272,7 @@ touch out
   done
   sleep 5
   slowcat ./5 1 2
-)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold |sed 's/[\x01-\x1F\x7F]//g'
+)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold -w 82|sed 's/[\x01-\x1F\x7F]//g'
 mv out out_5.txt
 
 ## Try QEMU with new kernel.
