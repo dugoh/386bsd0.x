@@ -184,11 +184,13 @@ make depend
 make
 mv /386bsd /386bsd.old
 cp 386bsd /386bsd
+find / -name disklabel -exec ls -l {} \;
 cd /usr/src/sbin/disklabel
 ls -lg /sbin/disklabel
 make clean
 make
 make install
+find / -name disklabel -exec ls -l {} \;
 ls -ltr
 ls -lg /sbin/disklabel
 cp obj/disklabel /tmp/
