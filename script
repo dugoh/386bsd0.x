@@ -252,19 +252,18 @@ touch out
 mv out out_4.txt
 
 
-## Keystrokes to feed to QEMU
+## Keystrokes to feed to EMU
 
 cat >5 <<__EOF__
 root
 
 exec sh
 date
-sleep 10
+sleep 60
 sync; sync; sync
 shutdown -rf now
-__EOF__
 
-## Try QEMU with new kernel.
+__EOF__
 
 touch out
 (
@@ -272,25 +271,37 @@ touch out
     sleep 5;
   done
   sleep 5
-  slowcat ./5 1 .5
-)| script -f -c 'qemu-system-i386                \
-                -cpu qemu32                      \
-                -curses                          \
-                -hda disk.img                    \
-                -M isapc                         \
-                -net nic,model=ne2k_isa          \
-                -no-reboot                       \
-                -m 64                            \
-                -startdate "$(date +%Y-%m-%d)"'  \
- |tee -a out
+  slowcat ./5 1 2
+)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold |sed 's/[\x01-\x1F\x7F]//g'
 mv out out_5.txt
+
+## Try QEMU with new kernel.
+
+#touch out
+#(
+#  until egrep -q 'login:|console' out ; do
+#    sleep 5;
+#  done
+#  sleep 5
+#  slowcat ./5 1 .5
+#)| script -f -c 'qemu-system-i386                \
+#                -cpu qemu32                      \
+#                -curses                          \
+#                -hda disk.img                    \
+#                -M isapc                         \
+#                -net nic,model=ne2k_isa          \
+#                -no-reboot                       \
+#                -m 64                            \
+#                -startdate "$(date +%Y-%m-%d)"'  \
+# |tee -a out
+#mv out out_5.txt
 
 ## Push to gh-pages
 cd /gh-pages
 mv /boot.img ./
 mv ../disk.img ./
 bzip2 --best disk.img
-split -b 50m "disk.img.bz2" "qdisk.part-"
+split -b 50m "disk.img.bz2" "disk.part-"
 rm disk.img.bz2
 mv ../bochsrc ./
 mv ../tunconfig ./
