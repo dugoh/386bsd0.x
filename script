@@ -203,7 +203,9 @@ make clean
 make
 make install
 echo paths seem b0rked, install from here
-/tmp/disklabel -r -w wd0 vbox generic ./wdboot ./bootwd
+/tmp/disklabel -r
+#/tmp/disklabel -r -w wd0 vbox generic ./wdboot ./bootwd
+disklabel -r -w /dev/wd0 vbox generic ./wdboot ./bootwd
 /tmp/disklabel -r
 sync; sync; sync
 shutdown -rf now
