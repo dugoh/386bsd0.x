@@ -189,6 +189,7 @@ ls -lg /sbin/disklabel
 make clean
 make
 make install
+ls -ltr
 ls -lg /sbin/disklabel
 cp disklabel /tmp/
 chmod +x /tmp/disklabel
