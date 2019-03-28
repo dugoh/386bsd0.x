@@ -191,7 +191,7 @@ make
 make install
 ls -ltr
 ls -lg /sbin/disklabel
-cp disklabel /tmp/
+cp obj/disklabel /tmp/
 chmod +x /tmp/disklabel
 cd /usr/src/sys.386bsd/i386/stand
 gcc -o trimhd trimhd.c
