@@ -184,11 +184,7 @@ rm -rf /0.?/var/
 ## Add an upgrade script
 
 cat >/0.x/upgrade.sh <<__EOF__
-sleep 5
-disklabel -r
 date $(date +%y%m%d%H%M.%S)
-disklabel -r
-sleep 5
 mv /usr/othersrc/[cegps]* /usr/src/
 rm -rf /0.1/usr/othersrc/
 find /usr/share/games/* -type d -exec rm -rf {} \;
@@ -199,24 +195,15 @@ tar -xvf /dev/rfd0a
 rm -r /sys/compile/*
 cd /sys/i386/conf
 config GENERICISA
-sleep 5
 cd /sys/compile/GENERICISA
 make depend
 make
 mv /386bsd /386bsd.old
 cp 386bsd /386bsd
-find / -name disklabel -exec ls -l {} \;
-disklabel -r
 cd /usr/src/sbin/disklabel
-ls -lg /sbin/disklabel
-sleep 5
 make clean
 make
 make install
-find / -name disklabel -exec ls -l {} \;
-ls -ltr
-ls -lg /sbin/disklabel
-sleep 5
 cd /usr/src/sys.386bsd/i386/stand
 gcc -o trimhd trimhd.c
 gcc -o splice splice.c
@@ -224,16 +211,10 @@ strip trimhd splice
 make clean
 make
 make install
-disklabel -r /dev/wd0d
-sleep 5
-ls -l /dev/|grep wd
-disklabel -r -w /dev/wd0d vbox generic ./wdboot ./bootwd
-disklabel -r
-ls -l ./wdboot ./bootwd
-disklabel -r /dev/wd0d
-sleep 5
+disklabel -r wd0
+disklabel -r -w wd0 vbox generic ./wdboot ./bootwd
+disklabel -r wd0
 sync; sync; sync
-sleep 5
 shutdown -rf now
 __EOF__
 chmod +x /0.x/upgrade.sh
@@ -265,7 +246,6 @@ root
 disklabel -r wd0
 cd /
 tar -xvf /dev/rfd0a .//upgrade.sh
-disklabel -r wd0
 csh -x /upgrade.sh
 __EOF__
 
@@ -290,14 +270,9 @@ root
 
 exec sh
 date
-echo set -x >/label.sh
-echo date $(date +%y%m%d%H%M.%S) >>/label.sh
-tail -15 /upgrade.sh >>/label.sh
-chmod +x /label.sh
-/label.sh
+date $(date +%y%m%d%H%M.%S)
 sleep 60; sync; sync; sync
 shutdown -rf now
-
 __EOF__
 
 touch out
