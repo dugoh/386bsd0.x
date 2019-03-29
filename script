@@ -41,11 +41,12 @@ slowcat() {
 
 movietime() {
     asciinema rec -y -c '/bin/bash -c ./script' /1.cast
+    asciinema upload /1.cast
     exit
 }
 
 ## init
-ls /1.cast || movietime
+ls /1.cast >/dev/null 2>&1 || movietime
 cd /
 mkdir /gh-pages
 
@@ -279,7 +280,8 @@ touch out
   done
   sleep 5
   slowcat ./5 1 2
-)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold -w 84|sed 's/[\x01-\x1F\x7F]//g'
+)| TERM=vt100 bochs -q -f bochsrc |tee -a out
+#)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold -w 84|sed 's/[\x01-\x1F\x7F]//g'
 mv out out_5.txt
 
 ## Try QEMU with new kernel.
@@ -308,7 +310,7 @@ cd /gh-pages
 mv ../bochsrc ./
 mv ../tunconfig ./
 mv ../out_*.txt ./
-mv ../1.cast ./
+cp ../1.cast ./
 mv ../boot.img ./
 mv ../disk.img ./
 bzip2 --best disk.img
