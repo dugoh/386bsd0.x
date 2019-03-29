@@ -40,7 +40,7 @@ slowcat() {
 }
 
 movietime() {
-    asciinema -y rec -c '/bin/bash -c ./script' /1.cast
+    asciinema rec -y -c '/bin/bash -c ./script' /1.cast
     exit
 }
 
