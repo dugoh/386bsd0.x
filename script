@@ -39,7 +39,13 @@ slowcat() {
     done
 }
 
+movietime() {
+    asciinema -y rec -c '/bin/bash -c ./script' /1.cast
+    exit
+}
+
 ## init
+[ -z "$ASCIINEMA_REC" ] && movietime
 cd /
 mkdir /gh-pages
 
@@ -298,13 +304,14 @@ mv out out_5.txt
 
 ## Push to gh-pages
 cd /gh-pages
-mv /boot.img ./
+mv ../bochsrc ./
+mv ../tunconfig ./
+mv ../out_*.txt ./
+mv ../1.cast ./
+mv ../boot.img ./
 mv ../disk.img ./
 bzip2 --best disk.img
 split -b 50m "disk.img.bz2" "disk.part-"
 rm disk.img.bz2
-mv ../bochsrc ./
-mv ../tunconfig ./
-cp /out_*.txt ./
 index
 push
