@@ -46,7 +46,7 @@ movietime() {
 }
 
 ## init
-export TERM=xterm256-color
+export TERM=ms-vt100-color
 stty -a
 echo $TERM
 stty rows 25
