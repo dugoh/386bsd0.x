@@ -46,6 +46,7 @@ movietime() {
 }
 
 ## init
+export TERM=origpc3
 ls /1.cast >/dev/null 2>&1 || movietime
 cd /
 mkdir /gh-pages
@@ -254,8 +255,8 @@ touch out
     sleep 5;
   done
   sleep 5
-  slowcat ./4 1 2
-)| TERM=vt100 bochs -q -f bochsrc |tee -a out
+  slowcat ./4 4 1
+)| bochs -q -f bochsrc |tee -a out
 #)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold -w 84|sed 's/[\x01-\x1F\x7F]//g'
 mv out out_4.txt
 
@@ -279,8 +280,8 @@ touch out
     sleep 5;
   done
   sleep 5
-  slowcat ./5 1 2
-)| TERM=vt100 bochs -q -f bochsrc |tee -a out
+  slowcat ./5 4 1
+)| bochs -q -f bochsrc |tee -a out
 #)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold -w 84|sed 's/[\x01-\x1F\x7F]//g'
 mv out out_5.txt
 
