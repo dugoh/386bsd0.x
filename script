@@ -45,7 +45,7 @@ movietime() {
 }
 
 ## init
-[ -z "$ASCIINEMA_REC" ] && movietime
+ls /1.cast || movietime
 cd /
 mkdir /gh-pages
 
