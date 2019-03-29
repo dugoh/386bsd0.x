@@ -41,21 +41,24 @@ slowcat() {
 }
 
 movietime() {
+    export TERM=ms-vt100-color
+    stty -a
+    echo $TERM
+    stty rows 25
     asciinema rec -y -c '/bin/bash -c ./script' /1.cast
     asciinema upload /1.cast
     exit
 }
 
+################################################################################
 ## init
-export TERM=ms-vt100-color
-stty -a
-echo $TERM
-stty rows 25
+
+## Start the video camera
 ls /1.cast >/dev/null 2>&1 || movietime
 cd /
 mkdir /gh-pages
 
-## Grab a clean 0.1 install and mount it.
+## Grab a clean 0.1 install and mount it
 
 for i in a b c;
     do wget -nv -O - https://dugoh.github.io/386bsd0.1/disk.part-a${i};
@@ -77,6 +80,7 @@ cp -R -p var /0.1/
 ## Clone the 386bsd github repo and checkout 0.x.
 ## 75c3124387dda5db245b62552d4da62cf60a82de Nov 2017 <- to test tracking
 ## aeaabcf90cebcb2c70dae2e3f22e0bbead5927a9 Jan 2019 <- current
+
 cd /
 git clone --depth=50 --branch=0.1 https://github.com/386bsd/386bsd.git
 cd 386bsd
@@ -144,7 +148,7 @@ find /0.?/etc/ -type f ! -name disktab ! -name bin.profile -exec rm -rf {} \;
 
 #### Check /usr
 
-## A bit odd, the ufs dir forks in tree.
+## A bit odd, the ufs dir forks in tree
 
 cp -R -p /0.1/usr/src/sys.386bsd/ufs /0.1/usr/src/
 
@@ -169,7 +173,7 @@ rm -rf /0.?/var/
 #echo usr
 #diff -qr /0.1/usr /0.x/usr |tee /gh-pages/usr-diffs.txt
 
-## This is probably all that's needed to upgrade.
+## This is probably all that's needed to upgrade
 #echo totar
 #diff -qr /0.x/ /0.1/ \
 #  |grep -v "^Only in /0.1/" \
@@ -177,11 +181,13 @@ rm -rf /0.?/var/
 #       -e's/Only in/OnlyIn/' \
 #  |awk '{print $2}'
 
-## Add an upgrade script.
+## Add an upgrade script
 
 cat >/0.x/upgrade.sh <<__EOF__
 set -x
+disklabel -r
 date $(date +%y%m%d%H%M.%S)
+disklabel -r
 mv /usr/othersrc/[cegps]* /usr/src/
 rm -rf /0.1/usr/othersrc/
 find /usr/share/games/* -type d -exec rm -rf {} \;
@@ -199,6 +205,7 @@ make
 mv /386bsd /386bsd.old
 cp 386bsd /386bsd
 find / -name disklabel -exec ls -l {} \;
+disklabel -r
 cd /usr/src/sbin/disklabel
 ls -lg /sbin/disklabel
 sleep 5
@@ -220,6 +227,8 @@ disklabel -r /dev/wd0d
 sleep 5
 ls -l /dev/|grep wd
 disklabel -r -w /dev/wd0d vbox generic ./wdboot ./bootwd
+disklabel -r
+ls -l ./wdboot ./bootwd
 disklabel -r /dev/wd0d
 sleep 5
 sync; sync; sync
@@ -243,15 +252,21 @@ cd /0.x
 
 tar -tvf /boot.img
 
+################################################################################
+## run bochs
+
 ## Keystrokes to feed to bochs
 
 cd /
 cat >4 <<__EOF__
 root
 
+disklabel -r
 exec sh
+disklabel -r
 cd /
 tar -xvf /dev/rfd0a .//upgrade.sh
+disklabel -r
 /upgrade.sh
 __EOF__
 
