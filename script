@@ -261,12 +261,10 @@ cd /
 cat >4 <<__EOF__
 root
 
-disklabel -r
-exec sh
-disklabel -r
+disklabel -r wd0
 cd /
 tar -xvf /dev/rfd0a .//upgrade.sh
-disklabel -r
+disklabel -r wd0
 /upgrade.sh
 __EOF__
 
