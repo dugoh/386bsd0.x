@@ -46,7 +46,9 @@ movietime() {
 }
 
 ## init
-export TERM=origpc3
+#export TERM=origpc3
+echo $TERM
+stty rows 25
 ls /1.cast >/dev/null 2>&1 || movietime
 cd /
 mkdir /gh-pages
