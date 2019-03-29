@@ -7,7 +7,7 @@ addons:
     - qemu
     - python3
     - python3-pip
-    - expect
+    - expect-dev
 language: bash
 
 script:
