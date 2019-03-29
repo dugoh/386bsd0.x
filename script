@@ -34,7 +34,7 @@ slowcat() {
     local b=$(wc -c <${1})
     while [ ${c} -lt ${b} ]; do
         dd if=${1} bs=1 count=${2} skip=${c} 2>/dev/null
-        dd if=${1} bs=1 count=${2} skip=${c} 2>/dev/null |grep -q "^$" && sleep 5
+        dd if=${1} bs=1 count=${2} skip=${c} 2>/dev/null |grep -q "^$" && sleep 4
         (( c = c + ${2} ))
         sleep ${3}
     done
@@ -216,10 +216,11 @@ strip trimhd splice
 make clean
 make
 make install
-disklabel -r
+disklabel -r /dev/rwd0d
 sleep 5
-disklabel -r -w /dev/wd0 vbox generic ./wdboot ./bootwd
-/tmp/disklabel -r
+ls -l /dev/|grep wd
+disklabel -r -w /dev/rwd0d vbox generic ./wdboot ./bootwd
+disklabel -r /dev/rwd0d
 sleep 5
 sync; sync; sync
 sleep 5
@@ -261,8 +262,8 @@ touch out
   until egrep -q 'login:|console' out ; do
     sleep 5;
   done
-  sleep 15
-  slowcat ./4 1 1
+  sleep 10
+  slowcat ./4 1 .3
 )| stdbuf -i 0 -o 0 -e 0 bochs -q -f bochsrc | stdbuf -i 0 -o 0 -e 0 tee -a out
 #)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold -w 84|sed 's/[\x01-\x1F\x7F]//g'
 mv out out_4.txt
@@ -275,8 +276,7 @@ root
 
 exec sh
 date
-sleep 60
-sync; sync; sync
+sleep 60; sync; sync; sync
 shutdown -rf now
 
 __EOF__
@@ -286,8 +286,8 @@ touch out
   until egrep -q 'login:|console' out ; do
     sleep 5;
   done
-  sleep 15
-  slowcat ./5 1 1
+  sleep 10
+  slowcat ./5 1 .3
 )| stdbuf -i 0 -o 0 -e 0 bochs -q -f bochsrc | stdbuf -i 0 -o 0 -e 0 tee -a out
 #)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold -w 84|sed 's/[\x01-\x1F\x7F]//g'
 mv out out_5.txt
