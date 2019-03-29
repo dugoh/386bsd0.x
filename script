@@ -265,7 +265,7 @@ disklabel -r wd0
 cd /
 tar -xvf /dev/rfd0a .//upgrade.sh
 disklabel -r wd0
-/upgrade.sh
+csh -x /upgrade.sh
 __EOF__
 
 ## Run Bochs.
