@@ -34,6 +34,7 @@ slowcat() {
     local b=$(wc -c <${1})
     while [ ${c} -lt ${b} ]; do
         dd if=${1} bs=1 count=${2} skip=${c} 2>/dev/null
+        dd if=${1} bs=1 count=${2} skip=${c} 2>/dev/null |grep -q "^$" && sleep 5
         (( c = c + ${2} ))
         sleep ${3}
     done
@@ -179,6 +180,7 @@ rm -rf /0.?/var/
 ## Add an upgrade script.
 
 cat >/0.x/upgrade.sh <<__EOF__
+set -x
 date $(date +%y%m%d%H%M.%S)
 mv /usr/othersrc/[cegps]* /usr/src/
 rm -rf /0.1/usr/othersrc/
@@ -190,6 +192,7 @@ tar -xvf /dev/rfd0a
 rm -r /sys/compile/*
 cd /sys/i386/conf
 config GENERICISA
+sleep 5
 cd /sys/compile/GENERICISA
 make depend
 make
@@ -198,14 +201,14 @@ cp 386bsd /386bsd
 find / -name disklabel -exec ls -l {} \;
 cd /usr/src/sbin/disklabel
 ls -lg /sbin/disklabel
+sleep 5
 make clean
 make
 make install
 find / -name disklabel -exec ls -l {} \;
 ls -ltr
 ls -lg /sbin/disklabel
-cp obj/disklabel /tmp/
-chmod +x /tmp/disklabel
+sleep 5
 cd /usr/src/sys.386bsd/i386/stand
 gcc -o trimhd trimhd.c
 gcc -o splice splice.c
@@ -213,12 +216,13 @@ strip trimhd splice
 make clean
 make
 make install
-echo paths seem b0rked, install from here
-/tmp/disklabel -r
-#/tmp/disklabel -r -w wd0 vbox generic ./wdboot ./bootwd
+disklabel -r
+sleep 5
 disklabel -r -w /dev/wd0 vbox generic ./wdboot ./bootwd
 /tmp/disklabel -r
+sleep 5
 sync; sync; sync
+sleep 5
 shutdown -rf now
 __EOF__
 chmod +x /0.x/upgrade.sh
