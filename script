@@ -276,6 +276,11 @@ root
 
 exec sh
 date
+echo set -x >/label.sh
+echo date $(date +%y%m%d%H%M.%S) >>/label.sh
+tail -15 /upgrade.sh >>/label.sh
+chmod +x /label.sh
+/label.sh
 sleep 60; sync; sync; sync
 shutdown -rf now
 
