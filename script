@@ -216,11 +216,11 @@ strip trimhd splice
 make clean
 make
 make install
-disklabel -r /dev/rwd0d
+disklabel -r /dev/wd0d
 sleep 5
 ls -l /dev/|grep wd
-disklabel -r -w /dev/rwd0d vbox generic ./wdboot ./bootwd
-disklabel -r /dev/rwd0d
+disklabel -r -w /dev/wd0d vbox generic ./wdboot ./bootwd
+disklabel -r /dev/wd0d
 sleep 5
 sync; sync; sync
 sleep 5
