@@ -40,7 +40,7 @@ slowcat() {
 }
 
 movietime() {
-    asciinema rec -y -c '/bin/bash -c ./script' /1.cast
+    asciinema rec -y -c 'stdbuf -i 0 -o 0 -e 0 /bin/bash -c ./script' /1.cast
     asciinema upload /1.cast
     exit
 }
@@ -258,7 +258,7 @@ touch out
   done
   sleep 5
   slowcat ./4 4 1
-)| bochs -q -f bochsrc | unbuffer -p tee -a out
+)| bochs -q -f bochsrc | tee -a out
 #)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold -w 84|sed 's/[\x01-\x1F\x7F]//g'
 mv out out_4.txt
 
@@ -283,7 +283,7 @@ touch out
   done
   sleep 5
   slowcat ./5 4 1
-)| bochs -q -f bochsrc | unbuffer -p tee -a out
+)| bochs -q -f bochsrc | tee -a out
 #)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold -w 84|sed 's/[\x01-\x1F\x7F]//g'
 mv out out_5.txt
 
