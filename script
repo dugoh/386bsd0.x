@@ -46,10 +46,10 @@ movietime() {
 }
 
 ## init
-export TERM=pc3
+export TERM=xterm256-color
 stty -a
 echo $TERM
-#stty rows 25
+stty rows 25
 ls /1.cast >/dev/null 2>&1 || movietime
 cd /
 mkdir /gh-pages
