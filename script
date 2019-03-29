@@ -261,8 +261,8 @@ touch out
   until egrep -q 'login:|console' out ; do
     sleep 5;
   done
-  sleep 5
-  slowcat ./4 4 1
+  sleep 15
+  slowcat ./4 1 1
 )| stdbuf -i 0 -o 0 -e 0 bochs -q -f bochsrc | stdbuf -i 0 -o 0 -e 0 tee -a out
 #)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold -w 84|sed 's/[\x01-\x1F\x7F]//g'
 mv out out_4.txt
@@ -286,8 +286,8 @@ touch out
   until egrep -q 'login:|console' out ; do
     sleep 5;
   done
-  sleep 5
-  slowcat ./5 4 1
+  sleep 15
+  slowcat ./5 1 1
 )| stdbuf -i 0 -o 0 -e 0 bochs -q -f bochsrc | stdbuf -i 0 -o 0 -e 0 tee -a out
 #)| TERM=vt100 bochs -q -f bochsrc |tee -a out |fold -w 84|sed 's/[\x01-\x1F\x7F]//g'
 mv out out_5.txt
