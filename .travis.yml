@@ -5,8 +5,11 @@ addons:
     packages:
     - bochs-term
     - qemu
+    - python3
+    - python3-pip
 language: bash
 
 script:
+  - sudo pip3 install asciinema
   - chmod +x ./script
   - sudo /bin/bash -c ./script
