@@ -184,10 +184,11 @@ rm -rf /0.?/var/
 ## Add an upgrade script
 
 cat >/0.x/upgrade.sh <<__EOF__
-set -x
+sleep 5
 disklabel -r
 date $(date +%y%m%d%H%M.%S)
 disklabel -r
+sleep 5
 mv /usr/othersrc/[cegps]* /usr/src/
 rm -rf /0.1/usr/othersrc/
 find /usr/share/games/* -type d -exec rm -rf {} \;
