@@ -253,13 +253,13 @@ rm -f /usr/src/usr.bin/groff/devices/devps/obj
 cd /usr/src/share/mk;           (make install)
 cd /usr/src/include;            (make install)
 cd /usr/src/usr.bin/groff;
-cd devices;                     (make -k all && make -k install && make clean)
-cd /usr/src/lib;                (make -k all && make -k install && make clean)
-cd /usr/src/usr.bin/gcc;        (make -k all && make -k install && make clean)
-cd /usr/src/usr.bin/make;       (make -k all && make -k install && make clean)
-cd /usr/src;                    (make -k depend && make -k all && \
-                                 make -k install)
-cd /usr/src/share/man;          make makedb
+cd devices;                     (make all && make install && make clean)
+#cd /usr/src/lib;                (make -k all && make -k install && make clean)
+#cd /usr/src/usr.bin/gcc;        (make -k all && make -k install && make clean)
+#cd /usr/src/usr.bin/make;       (make -k all && make -k install && make clean)
+#cd /usr/src;                    (make -k depend && make -k all && \
+#                                 make -k install)
+#cd /usr/src/share/man;          make makedb
 sync; sync; sync; shutdown -rf now
 __EOF__
 chmod +x /0.x/upgrade.sh
