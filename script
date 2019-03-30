@@ -107,6 +107,15 @@ for i in a b; do
     wget -nv -O - "${MY_0_0_GHP}/386bsd-0.0.tar.bz2.part-a${i}";
 done| tar --wildcards -jxOvvf - "*/3in/src/floppy*"        \
     | tar --exclude="obj" --wildcards -xvvzf - "*grotty*"
+
+
+for i in a b; do
+    wget -nv -O - "${MY_0_0_GHP}/386bsd-0.0.tar.bz2.part-a${i}";
+done| tar --wildcards -jxOvvf - "*/3in/src/floppy*"        >8flops
+file 8flops
+cat 8flops | tar --exclude="obj" --wildcards -xvvzf - "*grotty*"
+
+
 rm /src
 
 ## /XXX-1 ######################################################################
