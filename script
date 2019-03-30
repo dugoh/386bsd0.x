@@ -50,6 +50,10 @@ movietime() {
 
 ################################################################################
 
+WFJ_386BSD_REPO=https://github.com/386bsd/386bsd.git
+MY_0_0_GHP=https://dugoh.github.io/386bsd-0.0-archive
+MY_0_1_GHP=https://dugoh.github.io/386bsd0.1
+
 ## Start the video camera if we havn't yet
 
 ls /1.cast >/dev/null 2>&1 || movietime
@@ -58,16 +62,16 @@ ls /1.cast >/dev/null 2>&1 || movietime
 
 cd /
 for i in a b c;
-    do wget -nv -O - https://dugoh.github.io/386bsd0.1/disk.part-a${i};
-done|bunzip2 >/disk.img || exit 1
-wget -nv https://dugoh.github.io/386bsd0.1/bochsrc || exit
-wget -nv https://dugoh.github.io/386bsd0.1/tunconfig || exit
+    do wget -nv -O - "${MY_0_1_GHP}/disk.part-a${i}";
+done|bunzip2 >/disk.img            || exit 1
+wget -nv "${MY_0_1_GHP}/bochsrc"   || exit 1
+wget -nv "${MY_0_1_GHP}/tunconfig" || exit 1
 
 modprobe ufs
 mount -o loop,ro -t ufs disk.img /mnt/
 cd /mnt
 
-## Copy out the relevant directories.
+## Copy out the relevant directories
 
 mkdir /0.1
 cp -R -p etc /0.1/
@@ -75,11 +79,11 @@ cp -R -p usr /0.1/
 cp -R -p var /0.1/
 cd /
 
-## Clone the 386bsd github repo and checkout 0.x.
+## Clone the 386bsd github repo and checkout 0.x
 ## 75c3124387dda5db245b62552d4da62cf60a82de Nov 2017 <- to test tracking
 ## aeaabcf90cebcb2c70dae2e3f22e0bbead5927a9 Jan 2019 <- current
 
-git clone --depth=50 --branch=0.1 https://github.com/386bsd/386bsd.git
+git clone --depth=50 --branch=0.1 "${WFJ_386BSD_REPO}"
 cd 386bsd
 git checkout -qf aeaabcf90cebcb2c70dae2e3f22e0bbead5927a9
 cat .gitignore
@@ -97,31 +101,35 @@ cd /
 ## Add in the sources for grotty from the 0.0 sources that went missing between
 ## 0.0 and 0.1. They were present in 4.3 Net/2 and missing in Lite. Maybe it hit
 ## some plagiarism check at UCB?
+
 ln -s /0.x /src
-for i in a b;
-    do https://dugoh.github.io/386bsd-0.0-archive/386bsd-0.0.tar.bz2.part-a${i};
+for i in a b; do
+    wget -nv -O - "${MY_0_0_GHP}/386bsd-0.0.tar.bz2.part-a${i}";
 done| bunzip2                                            \
     | tar --wildcards -xOvf - "*/3in/src/floppy*"        \
     | tar --exclude="obj" --wildcards -xvzf - "*grotty*"
 rm /src
-## /XXX-2 ######################################################################
+
+## /XXX-1 ######################################################################
 
 ## XXX-2 #######################################################################
 ##
 ## Fix the Makefile for expr
 ## Make just sits there idling after:
 ##     mkdep  -I. -I/usr/src/bin/expr
+
 printf ':2s/$/.c\nw\n' |ex /0.x/usr/src/bin/expr/Makefile
-## /XXX ########################################################################
+
+## /XXX-2 ######################################################################
 
 ## Some reorganisation to solve the high number of differences
 
-## There is no usr/othersrc in 0.x.
+## There is no usr/othersrc in 0.x
 
 mv /0.1/usr/othersrc/[cegps]* /0.1/usr/src/
 rm -rf /0.1/usr/othersrc/
 
-## Clean out kernel build remnants.
+## Clean out kernel build remnants
 
 rm -rf /0.?/usr/src/sys.386bsd/compile/*
 
@@ -135,11 +143,11 @@ cd /0.1 ; find ./ -type l|sort >/tmp/0.1-links
 cd /0.x ; find ./ -type l|sort >/tmp/0.x-links
 diff /tmp/0.1-links /tmp/0.x-links |tee /link-diffs.txt
 
-## Remove the directory that will become a link.
+## Remove the directory that will become a link in 0.x
 
 rm -rf /0.1/usr/include/vm 
 
-## Get rid of all symlinks to make life easy for diff.
+## Get rid of all symlinks to make life easy for diff
 
 find /0.?/ -type l -exec rm {} \;
 
@@ -156,7 +164,7 @@ find /0.1/ -type f -name "*.a" -exec rm -rf {} \;
 
 #### Check /etc
 
-## Some files got corrupt, get rid of them.
+## Some files got corrupt, get rid of them
 
 for file in $(find /0.x/etc -type f -size +0 -exec grep -zaPL [^\0] {} \;); do
     rm "${file}"
