@@ -102,7 +102,7 @@ cd /
 ## 0.0 and 0.1. They were present in 4.3 Net/2 and missing in Lite. Maybe it hit
 ## some plagiarism check at UCB?
 ln -s /0.x /src
-curl --silent \
+curl --silent --show-error \
     https://dugoh.github.io/386bsd-0.0-archive/386bsd-0.0.tar.bz2.part-a{a,b} \
         | bunzip2 \
         | tar --wildcards -xOvf - "*/3in/src/floppy*" \
