@@ -252,13 +252,13 @@ export NOPROFILE
 cd /usr/obj;    rm -rf *;
 cd /usr/src;    find . -name obj -exec rm -rf {} \;
 cd /usr/src;    make cleandir;
-cd /usr/src;    make obj;
-rm -f /usr/src/usr.bin/groff/devices/devdvi/obj
-rm -f /usr/src/usr.bin/groff/devices/devps/obj
-cd /usr/src/share/mk;           (make install)
-cd /usr/src/include;            (make install)
-cd /usr/src/usr.bin/groff;
-cd devices;                     (make all && make install && make clean)
+#cd /usr/src;    make obj;
+#rm -f /usr/src/usr.bin/groff/devices/devdvi/obj
+#rm -f /usr/src/usr.bin/groff/devices/devps/obj
+#cd /usr/src/share/mk;           (make install)
+#cd /usr/src/include;            (make install)
+#cd /usr/src/usr.bin/groff;
+#cd devices;                     (make all && make install && make clean)
 #cd /usr/src/lib;                (make -k all && make -k install && make clean)
 #cd /usr/src/usr.bin/gcc;        (make -k all && make -k install && make clean)
 #cd /usr/src/usr.bin/make;       (make -k all && make -k install && make clean)
