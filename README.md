@@ -21,4 +21,4 @@ By using Travis CI demonstrate this is not a one-off, and someone can use this r
 
 - Trivial code
 
-No piles of C code, just well aimed shell fu and original material
+No piles of C code, just well aimed shell fu and original material. For some reason the grotty sources are missing from groff in 0.1 (and in 0.x). They are pulled in from 0.0.
