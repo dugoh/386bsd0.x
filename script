@@ -271,6 +271,8 @@ root
 exec sh
 date; sleep 2
 date
+NOPROFILE=
+export NOPROFILE
 cd /usr/src/; make; sleep 60; sync; sync; sync; shutdown -rf now
 __EOF__
 
