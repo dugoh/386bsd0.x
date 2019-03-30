@@ -76,16 +76,17 @@ cd /mnt
 cp -R -p etc /0.1/
 cp -R -p usr /0.1/
 cp -R -p var /0.1/
+cd /
 
 ## Clone the 386bsd github repo and checkout 0.x.
 ## 75c3124387dda5db245b62552d4da62cf60a82de Nov 2017 <- to test tracking
 ## aeaabcf90cebcb2c70dae2e3f22e0bbead5927a9 Jan 2019 <- current
 
-cd /
 git clone --depth=50 --branch=0.1 https://github.com/386bsd/386bsd.git
 cd 386bsd
 git checkout -qf aeaabcf90cebcb2c70dae2e3f22e0bbead5927a9
 cat .gitignore
+cd /
 
 ## Copy out the relevant directories to diff
 
