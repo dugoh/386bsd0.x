@@ -106,7 +106,7 @@ curl --silent \
     https://dugoh.github.io/386bsd-0.0-archive/386bsd-0.0.tar.bz2.part-a{a,b} \
         | bunzip2 \
         | tar --wildcards -xOvf - "*/3in/src/floppy*" \
-        | tar --exclude="obj" --wildcards -tvzf - "*grotty*"
+        | tar --exclude="obj" --wildcards -xvzf - "*grotty*"
 rm /src
 ## /XXX ########################################################################
 
