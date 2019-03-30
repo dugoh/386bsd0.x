@@ -108,11 +108,14 @@ curl --silent \
         | tar --wildcards -xOvf - "*/3in/src/floppy*" \
         | tar --exclude="obj" --wildcards -xvzf - "*grotty*"
 rm /src
-## /XXX ########################################################################
+## /XXX-2 ######################################################################
 
 ## XXX-2 #######################################################################
 ##
-## fix makefile
+## Fix the Makefile for expr
+## Make just sits there idling after:
+##     mkdep  -I. -I/usr/src/bin/expr
+printf ':2s/$/.c\nw\n' |ex /0.x/usr/src/bin/expr/Makefile
 ## /XXX ########################################################################
 
 ## Some reorganisation to solve the high number of differences
@@ -169,7 +172,7 @@ find /0.?/etc/ -type f ! -name disktab ! -name bin.profile -exec rm -rf {} \;
 
 #### Check /usr
 
-## A bit odd, the ufs dir forks in tree
+## A bit odd, the ufs dir forks in tree?
 
 cp -R -p /0.1/usr/src/sys.386bsd/ufs /0.1/usr/src/
 
