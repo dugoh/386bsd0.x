@@ -103,21 +103,13 @@ cd /
 ## some plagiarism check at UCB?
 
 ln -s /0.x /src
-#for i in a b; do
-#    wget -nv -O - "${MY_0_0_GHP}/386bsd-0.0.tar.bz2.part-a${i}";
-#done| tar --wildcards -jxOvvf - "*/3in/src/floppy*"        \
-#    | tar --exclude="obj" --wildcards -xvvzf - "*grotty*"
-
-
 for i in a b; do
     wget -nv -O - "${MY_0_0_GHP}/386bsd-0.0.tar.bz2.part-a${i}";
-done >zipper
-cat zipper | tar --wildcards -jxOvvf - "*/3in/src/floppy*"        >8flops.tar.z
-file 8flops.tar.z
-tar --exclude="obj" --wildcards -xvvzf 8flops.tar.z "*grotty*"
-
-
+done| bunzip2                                             \
+    | tar --wildcards -xOf - "*/3in/src/floppy*"          \
+    | tar --exclude="obj" --wildcards -xzf - "*grotty*"
 rm /src
+ls /0.x/usr/src/usr.bin/groff/grotty/grotty.cc >/dev/null 2>&1 || exit 1
 
 ## /XXX-1 ######################################################################
 
