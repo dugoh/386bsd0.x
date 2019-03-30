@@ -114,7 +114,7 @@ for i in a b; do
 done >zipper
 cat zipper | tar --wildcards -jxOvvf - "*/3in/src/floppy*"        >8flops.tar.z
 file 8flops.tar.z
-cat 8flops | tar --exclude="obj" --wildcards -xvvzf 8flops.tar.z "*grotty*"
+tar --exclude="obj" --wildcards -xvvzf 8flops.tar.z "*grotty*"
 
 
 rm /src
