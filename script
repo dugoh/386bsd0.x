@@ -94,6 +94,21 @@ cp -R -p etc /0.x/
 cp -R -p usr /0.x/
 cp -R -p var /0.x/
 
+## XXX #########################################################################
+## Add in the sources for grotty from the 0.0 sources.
+## They went missing somewhere between 0.0 and 0.1.
+##
+
+ln -s /0.x /src
+curl --silent \
+    https://dugoh.github.io/386bsd-0.0-archive/386bsd-0.0.tar.bz2.part-a{a,b} \
+        | bunzip2 \
+        | tar --wildcards -xOvf - "*/3in/src/floppy*" \
+        | tar --exclude="obj" --wildcards -tvzf - "*grotty*"
+rm /src
+
+## /XXX ########################################################################
+
 ## Some more reorganisation to solve the high number of differences.
 
 ## There is no usr/othersrc in 0.x.
