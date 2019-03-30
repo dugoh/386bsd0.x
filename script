@@ -200,20 +200,20 @@ make depend
 make
 mv /386bsd /386bsd.old
 cp 386bsd /386bsd
-cd /usr/src/sbin/disklabel
-make clean
-make
-make install
-cd /usr/src/sys.386bsd/i386/stand
-gcc -o trimhd trimhd.c
-gcc -o splice splice.c
-strip trimhd splice
-make clean
-make
-make install
-disklabel -r wd0
-disklabel -r -w wd0 vbox generic ./wdboot ./bootwd
-disklabel -r wd0
+#cd /usr/src/sbin/disklabel
+#make clean
+#make
+#make install
+#cd /usr/src/sys.386bsd/i386/stand
+#gcc -o trimhd trimhd.c
+#gcc -o splice splice.c
+#strip trimhd splice
+#make clean
+#make
+#make install
+#disklabel -r wd0
+#disklabel -r -w wd0 vbox generic ./wdboot ./bootwd
+#disklabel -r wd0
 sync; sync; sync
 shutdown -rf now
 __EOF__
@@ -271,8 +271,7 @@ root
 exec sh
 date
 date $(date +%y%m%d%H%M.%S)
-sleep 60; sync; sync; sync
-shutdown -rf now
+cd /usr/src/; make; sleep 60; sync; sync; sync; shutdown -rf now
 __EOF__
 
 touch out
