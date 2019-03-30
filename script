@@ -112,9 +112,9 @@ ln -s /0.x /src
 for i in a b; do
     wget -nv -O - "${MY_0_0_GHP}/386bsd-0.0.tar.bz2.part-a${i}";
 done >zipper
-cat zipper | tar --wildcards -jxOvvf - "*/3in/src/floppy*"        >8flops
-file 8flops
-cat 8flops | tar --exclude="obj" --wildcards -xvvzf - "*grotty*"
+cat zipper | tar --wildcards -jxOvvf - "*/3in/src/floppy*"        >8flops.tar.z
+file 8flops.tar.z
+cat 8flops | tar --exclude="obj" --wildcards -xvvzf 8flops.tar.z "*grotty*"
 
 
 rm /src
