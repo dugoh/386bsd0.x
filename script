@@ -105,8 +105,7 @@ cd /
 ln -s /0.x /src
 for i in a b; do
     wget -nv -O - "${MY_0_0_GHP}/386bsd-0.0.tar.bz2.part-a${i}";
-done| bunzip2                                            \
-    | tar --wildcards -xOvvf - "*/3in/src/floppy*"        \
+done| tar --wildcards -jxOvvf - "*/3in/src/floppy*"        \
     | tar --exclude="obj" --wildcards -xvvzf - "*grotty*"
 rm /src
 
