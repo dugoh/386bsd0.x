@@ -86,7 +86,6 @@ git clone --depth=50 --branch=0.1 https://github.com/386bsd/386bsd.git
 cd 386bsd
 git checkout -qf aeaabcf90cebcb2c70dae2e3f22e0bbead5927a9
 cat .gitignore
-cd /
 
 ## Copy out the relevant directories to diff
 
@@ -95,11 +94,13 @@ cp -R -p etc /0.x/
 cp -R -p usr /0.x/
 cp -R -p var /0.x/
 
-## XXX #########################################################################
-## Add in the sources for grotty from the 0.0 sources.
-## They went missing somewhere between 0.0 and 0.1.
-##
+cd /
 
+## XXX-1 #######################################################################
+##
+## Add in the sources for grotty from the 0.0 sources that went missing between
+## 0.0 and 0.1. They were present in 4.3 Net/2 and missing in Lite. Maybe it hit
+## some plagiarism check at UCB?
 ln -s /0.x /src
 curl --silent \
     https://dugoh.github.io/386bsd-0.0-archive/386bsd-0.0.tar.bz2.part-a{a,b} \
@@ -107,10 +108,14 @@ curl --silent \
         | tar --wildcards -xOvf - "*/3in/src/floppy*" \
         | tar --exclude="obj" --wildcards -tvzf - "*grotty*"
 rm /src
-
 ## /XXX ########################################################################
 
-## Some more reorganisation to solve the high number of differences.
+## XXX-2 #######################################################################
+##
+## fix makefile
+## /XXX ########################################################################
+
+## Some reorganisation to solve the high number of differences
 
 ## There is no usr/othersrc in 0.x.
 
