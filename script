@@ -237,7 +237,7 @@ tar -tvf /boot.img
 ################################################################################
 ## run bochs
 
-## Keystrokes to feed to bochs
+## Keystrokes to feed to bochs (1)
 
 cd /
 cat >4 <<__EOF__
@@ -263,16 +263,24 @@ touch out
 mv out out_4.txt
 
 
-## Keystrokes to feed to EMU
+## Keystrokes to feed to EMU (2)
 
 cat >5 <<__EOF__
 root
 
 exec sh
+date; sleep 2
 date
-date $(date +%y%m%d%H%M.%S)
 cd /usr/src/; make; sleep 60; sync; sync; sync; shutdown -rf now
 __EOF__
+
+# Try booting in the now
+
+NOW="$(date +%s)"
+sed -i -e "s/740778488/${NOW}/" bochsrc
+grep clock bochsrc
+
+## Run Bochs.
 
 touch out
 (
