@@ -42,8 +42,6 @@ slowcat() {
 
 movietime() {
     export TERM=ms-vt100-color
-    stty -a
-    echo $TERM
     stty rows 25
     asciinema rec -y -c '/bin/bash -c ./script' /1.cast
     asciinema upload /1.cast
@@ -51,15 +49,14 @@ movietime() {
 }
 
 ################################################################################
-## init
 
-## Start the video camera
+## Start the video camera if we havn't yet
+
 ls /1.cast >/dev/null 2>&1 || movietime
-cd /
-mkdir /gh-pages
 
 ## Grab a clean 0.1 install and mount it
 
+cd /
 for i in a b c;
     do wget -nv -O - https://dugoh.github.io/386bsd0.1/disk.part-a${i};
 done|bunzip2 >/disk.img || exit 1
@@ -68,11 +65,11 @@ wget -nv https://dugoh.github.io/386bsd0.1/tunconfig || exit
 
 modprobe ufs
 mount -o loop,ro -t ufs disk.img /mnt/
+cd /mnt
 
 ## Copy out the relevant directories.
 
 mkdir /0.1
-cd /mnt
 cp -R -p etc /0.1/
 cp -R -p usr /0.1/
 cp -R -p var /0.1/
@@ -93,7 +90,6 @@ mkdir /0.x
 cp -R -p etc /0.x/
 cp -R -p usr /0.x/
 cp -R -p var /0.x/
-
 cd /
 
 ## XXX-1 #######################################################################
@@ -102,11 +98,11 @@ cd /
 ## 0.0 and 0.1. They were present in 4.3 Net/2 and missing in Lite. Maybe it hit
 ## some plagiarism check at UCB?
 ln -s /0.x /src
-curl --silent --show-error \
-    https://dugoh.github.io/386bsd-0.0-archive/386bsd-0.0.tar.bz2.part-a{a,b} \
-        | bunzip2 \
-        | tar --wildcards -xOvf - "*/3in/src/floppy*" \
-        | tar --exclude="obj" --wildcards -xvzf - "*grotty*"
+for i in a b;
+    do https://dugoh.github.io/386bsd-0.0-archive/386bsd-0.0.tar.bz2.part-a${i};
+done| bunzip2                                            \
+    | tar --wildcards -xOvf - "*/3in/src/floppy*"        \
+    | tar --exclude="obj" --wildcards -xvzf - "*grotty*"
 rm /src
 ## /XXX-2 ######################################################################
 
@@ -137,7 +133,7 @@ find /0.1/usr/share/games/* -type d -exec rm -rf {} \;
 
 cd /0.1 ; find ./ -type l|sort >/tmp/0.1-links
 cd /0.x ; find ./ -type l|sort >/tmp/0.x-links
-diff /tmp/0.1-links /tmp/0.x-links |tee /gh-pages/link-diffs.txt
+diff /tmp/0.1-links /tmp/0.x-links |tee /link-diffs.txt
 
 ## Remove the directory that will become a link.
 
@@ -154,9 +150,9 @@ find /0.1/ -type f -name "*.a" -exec rm -rf {} \;
 
 ## The diff should be reasonably sized now. Dump the interim differences.
 
-#diff -qrN /0.1/etc /0.x/etc |tee /gh-pages/etc-i-diffs.txt
-#diff -qrN /0.1/usr /0.x/usr |tee /gh-pages/usr-i-diffs.txt
-#diff -qrN /0.1/var /0.x/var |tee /gh-pages/var-i-diffs.txt
+#diff -qrN /0.1/etc /0.x/etc |tee /etc-i-diffs.txt
+#diff -qrN /0.1/usr /0.x/usr |tee /usr-i-diffs.txt
+#diff -qrN /0.1/var /0.x/var |tee /var-i-diffs.txt
 
 #### Check /etc
 
@@ -193,9 +189,9 @@ rm -rf /0.?/var/
 ## Dump the differences again.
 
 #echo etc
-#diff -qr /0.1/etc /0.x/etc |tee /gh-pages/etc-diffs.txt
+#diff -qr /0.1/etc /0.x/etc |tee /etc-diffs.txt
 #echo usr
-#diff -qr /0.1/usr /0.x/usr |tee /gh-pages/usr-diffs.txt
+#diff -qr /0.1/usr /0.x/usr |tee /usr-diffs.txt
 
 ## This is probably all that's needed to upgrade
 #echo totar
@@ -362,7 +358,9 @@ mv out out_5.txt
 #mv out out_5.txt
 
 ## Push to gh-pages
+mkdir /gh-pages
 cd /gh-pages
+mv ../*diffs* ./
 mv ../bochsrc ./
 mv ../tunconfig ./
 mv ../out_*.txt ./
