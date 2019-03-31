@@ -255,7 +255,7 @@ export NOPROFILE
 cd /usr/obj;    rm -rf *;
 cd /usr/src;    find . -name obj -exec rm -rf {} \;
 cd /usr/src;    make cleandir;
-#cd /usr/src;    make obj;
+cd /usr/src;    make obj;
 #rm -f /usr/src/usr.bin/groff/devices/devdvi/obj
 #rm -f /usr/src/usr.bin/groff/devices/devps/obj
 #cd /usr/src/share/mk;           (make install)
