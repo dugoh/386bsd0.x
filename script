@@ -123,8 +123,16 @@ printf ':2s/$/.c\nw\n' |ex /0.x/usr/src/bin/expr/Makefile
 ##
 ## tn3270 didn't get through make cleandir with:
 ##    Could not find 386bsd.lib.mk
+## It doesn't know obj: either, there is probably a host of other things not
+## standard with this one.
 printf '\045s/386//\nw\n' |ex /0.x/usr/src/usr.bin/tn3270/api/makefile
+echo obj: >>/usr/src/usr.bin/tn3270/makefile
 
+## XXX-3 #######################################################################
+##
+## I guess this was moved in from contrib without the makefile being brought
+## into the fold.
+echo obj: >>/usr/src/usr.bin/rcs/Makefile
 
 ## Some reorganisation to solve the high number of differences
 
@@ -256,12 +264,12 @@ cd /usr/obj;    rm -rf *;
 cd /usr/src;    find . -name obj -exec rm -rf {} \;
 cd /usr/src;    make cleandir;
 cd /usr/src;    make obj;
-#rm -f /usr/src/usr.bin/groff/devices/devdvi/obj
-#rm -f /usr/src/usr.bin/groff/devices/devps/obj
-#cd /usr/src/share/mk;           (make install)
-#cd /usr/src/include;            (make install)
-#cd /usr/src/usr.bin/groff;
-#cd devices;                     (make all && make install && make clean)
+rm -f /usr/src/usr.bin/groff/devices/devdvi/obj
+rm -f /usr/src/usr.bin/groff/devices/devps/obj
+cd /usr/src/share/mk;           (make install)
+cd /usr/src/include;            (make install)
+cd /usr/src/usr.bin/groff;
+cd devices;                     (make all && make install && make clean)
 #cd /usr/src/lib;                (make -k all && make -k install && make clean)
 #cd /usr/src/usr.bin/gcc;        (make -k all && make -k install && make clean)
 #cd /usr/src/usr.bin/make;       (make -k all && make -k install && make clean)
