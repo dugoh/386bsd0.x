@@ -126,13 +126,13 @@ printf ':2s/$/.c\nw\n' |ex /0.x/usr/src/bin/expr/Makefile
 ## It doesn't know obj: either, there is probably a host of other things not
 ## standard with this one.
 printf '\045s/386//\nw\n' |ex /0.x/usr/src/usr.bin/tn3270/api/makefile
-echo obj: >>/usr/src/usr.bin/tn3270/makefile
+echo obj: >>/0.x/usr/src/usr.bin/tn3270/makefile
 
 ## XXX-3 #######################################################################
 ##
 ## I guess this was moved in from contrib without the makefile being brought
 ## into the fold.
-echo obj: >>/usr/src/usr.bin/rcs/Makefile
+echo obj: >>/0.x/usr/src/usr.bin/rcs/Makefile
 
 ## Some reorganisation to solve the high number of differences
 
