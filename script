@@ -100,8 +100,8 @@ cd /
 ##
 ## Add in the sources for grotty from the 0.0 sources that went missing between
 ## 0.0 and 0.1. They were present in 4.3 Net/2 and missing in Lite. Maybe it hit
-## some plagiarism check at UCB?
-
+## some plagiarism check at UCB? It breaks the build.
+##
 ln -s /0.x /src
 for i in a b; do
     wget -nv -O - "${MY_0_0_GHP}/386bsd-0.0.tar.bz2.part-a${i}";
@@ -111,17 +111,20 @@ done| bunzip2                                             \
 rm /src
 ls /0.x/usr/src/usr.bin/groff/grotty/grotty.cc >/dev/null 2>&1 || exit 1
 
-## /XXX-1 ######################################################################
-
 ## XXX-2 #######################################################################
 ##
 ## Fix the Makefile for expr
 ## Make just sits there idling after:
 ##     mkdep  -I. -I/usr/src/bin/expr
-
 printf ':2s/$/.c\nw\n' |ex /0.x/usr/src/bin/expr/Makefile
 
-## /XXX-2 ######################################################################
+
+## XXX-3 #######################################################################
+##
+## tn3270 didn't get through make cleandir with:
+##    Could not find 386bsd.lib.mk
+printf '\045s/386//\nw\n' |ex /0.x/usr/src/usr.bin/tn3270/api/makefile
+
 
 ## Some reorganisation to solve the high number of differences
 
