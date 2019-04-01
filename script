@@ -118,7 +118,6 @@ ls /0.x/usr/src/usr.bin/groff/grotty/grotty.cc >/dev/null 2>&1 || exit 1
 ##     mkdep  -I. -I/usr/src/bin/expr
 printf ':2s/$/.c\nw\n' |ex /0.x/usr/src/bin/expr/Makefile
 
-
 ## XXX-3 #######################################################################
 ##
 ## tn3270 didn't get through make cleandir with:
@@ -128,11 +127,21 @@ printf ':2s/$/.c\nw\n' |ex /0.x/usr/src/bin/expr/Makefile
 printf '\045s/386//\nw\n' |ex /0.x/usr/src/usr.bin/tn3270/api/makefile
 echo obj: >>/0.x/usr/src/usr.bin/tn3270/makefile
 
-## XXX-3 #######################################################################
+## XXX-4 #######################################################################
 ##
 ## I guess this was moved in from contrib without the makefile being brought
 ## into the fold.
 echo obj: >>/0.x/usr/src/usr.bin/rcs/Makefile
+
+## XXX-5 #######################################################################
+##
+## Compiling libg++ breaks because HUGE does not fit in a double
+(
+    printf '41i\n'
+    printf '#elif defined(i386)\t\t\t\t/* MAXDOUBLE from values.h */\n'
+    printf '#define HUGE_VAL\t1.79769313486231570e+308\n'
+    printf '.\nw!\n'
+) |ex /0.x/usr/src/include/math.h
 
 ## Some reorganisation to solve the high number of differences
 
@@ -270,10 +279,10 @@ cd /usr/src/share/mk;           (make install)
 cd /usr/src/include;            (make install)
 cd /usr/src/usr.bin/groff;
 cd devices;                     (make all && make install && make clean)
-cd /usr/src/lib;                (make -k all && make -k install && make clean)
-cd /usr/src/usr.bin/gcc;        (make all && make install && make clean)
-cd /usr/src/usr.bin/g++;        (make all && make install && make clean)
 cd /usr/src/lib;                (make all && make install && make clean)
+cd /usr/src/usr.bin/gcc;        (make all && make install && make clean)
+#cd /usr/src/usr.bin/g++;        (make all && make install && make clean)
+#cd /usr/src/lib;                (make all && make install && make clean)
 #cd /usr/src/usr.bin/make;       (make -k all && make -k install && make clean)
 #cd /usr/src;                    (make -k depend && make -k all && \
 #                                 make -k install)
