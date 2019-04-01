@@ -311,9 +311,7 @@ tar -xvf /dev/rfd0a .//upgrade.sh
 csh -x /upgrade.sh
 __EOF__
 
-## Upgrade RAM and run Bochs again.
-
-sed -i -e 's/^megs:.*/megs: 64/' bochsrc
+## Run Boch
 
 touch out
 (
@@ -340,13 +338,15 @@ chmod +x /buildworld.sh
 /buildworld.sh
 __EOF__
 
-# Try booting in the now
+# Try booting in the now with more RAM
 
 NOW="$(date +%s)"
 sed -i -e "s/740778488/${NOW}/" bochsrc
+sed -i -e 's/^megs:.*/megs: 64/' bochsrc
+
 grep clock bochsrc
 
-## Run Bochs.
+## Run Bochs again.
 
 touch out
 (
