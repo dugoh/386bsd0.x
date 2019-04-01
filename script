@@ -334,7 +334,7 @@ root
 exec sh
 date; sleep 2
 date
-tail -22 /upgrade.sh >/buildworld.sh
+tail -21 /upgrade.sh >/buildworld.sh
 chmod +x /buildworld.sh
 /buildworld.sh
 __EOF__
