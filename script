@@ -286,7 +286,7 @@ cd /usr/src/usr.bin/gcc;        (make all && make install && make clean && echo 
 cd /usr/src/lib;                (make all && make install && make clean && echo lib done again)
 cd /usr/src/usr.bin/make;       (make all && make install && make clean && echo make done)
 cd /usr/src;                    (make depend && make all && \
-#                                 make install)
+                                 make install)
 #cd /usr/src/share/man;          make makedb
 sync; sync; sync; shutdown -rf now
 __EOF__
