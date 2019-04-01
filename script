@@ -282,8 +282,8 @@ cd devices;                     (make all && make install && make clean)
 cd /usr/src/lib;                (make all && make install && make clean && echo lib done)
 cd /usr/src/usr.bin/gcc;        (make all && make install && make clean && echo gcc done)
 #cd /usr/src/usr.bin/g++;        (make all && make install && make clean)
-#cd /usr/src/lib;                (make all && make install && make clean)
-#cd /usr/src/usr.bin/make;       (make -k all && make -k install && make clean)
+cd /usr/src/lib;                (make all && make install && make clean && echo lib done again)
+cd /usr/src/usr.bin/make;       (make all && make install && make clean && echo make done)
 #cd /usr/src;                    (make -k depend && make -k all && \
 #                                 make -k install)
 #cd /usr/src/share/man;          make makedb
