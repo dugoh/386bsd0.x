@@ -311,7 +311,9 @@ tar -xvf /dev/rfd0a .//upgrade.sh
 csh -x /upgrade.sh
 __EOF__
 
-## Run Bochs.
+## Upgrade RAM and run Bochs again.
+
+sed -i -e 's/^megs:.*/megs: 64/' bochsrc
 
 touch out
 (
