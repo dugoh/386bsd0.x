@@ -345,6 +345,7 @@ date; sleep 2
 date
 tail -21 /upgrade.sh >/buildworld.sh
 chmod +x /buildworld.sh
+cat /buildworld.sh
 /buildworld.sh
 __EOF__
 
