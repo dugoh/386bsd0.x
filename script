@@ -272,6 +272,7 @@ cd /usr/src/usr.bin/groff;
 cd devices;                     (make all && make install && make clean)
 cd /usr/src/lib;                (make -k all && make -k install && make clean)
 cd /usr/src/usr.bin/gcc;        (make all && make install && make clean)
+cd /usr/src/usr.bin/g++;        (make all && make install && make clean)
 cd /usr/src/lib;                (make all && make install && make clean)
 #cd /usr/src/usr.bin/make;       (make -k all && make -k install && make clean)
 #cd /usr/src;                    (make -k depend && make -k all && \
