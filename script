@@ -267,8 +267,8 @@ sync; sync; sync
 shutdown -rf now
 exit
 # break out the 'ol buildworld.sh
-NOPROFILE=
-export NOPROFILE
+echo well today no NOPROFILE=
+echo well today no export NOPROFILE
 cd /usr/obj;    rm -rf *;
 cd /usr/src;    find . -name obj -exec rm -rf {} \;
 cd /usr/src;    make cleandir;
@@ -279,8 +279,8 @@ cd /usr/src/share/mk;           (make install)
 cd /usr/src/include;            (make install)
 cd /usr/src/usr.bin/groff;
 cd devices;                     (make all && make install && make clean)
-cd /usr/src/lib;                (make all && make install && make clean)
-cd /usr/src/usr.bin/gcc;        (make all && make install && make clean)
+cd /usr/src/lib;                (make all && make install && make clean && echo lib done)
+cd /usr/src/usr.bin/gcc;        (make all && make install && make clean && echo gcc done)
 #cd /usr/src/usr.bin/g++;        (make all && make install && make clean)
 #cd /usr/src/lib;                (make all && make install && make clean)
 #cd /usr/src/usr.bin/make;       (make -k all && make -k install && make clean)
