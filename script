@@ -100,7 +100,8 @@ cd /
 ##
 ## Add in the sources for grotty from the 0.0 sources that went missing between
 ## 0.0 and 0.1. They were present in 4.3 Net/2 and missing in Lite. Maybe it hit
-## some plagiarism check at UCB? It breaks the build.
+## some plagiarism check at UCB or plain broken at the time? Anyway, it breaks
+## the build, so I'm adding it.
 ##
 ln -s /0.x /src
 for i in a b; do
@@ -129,7 +130,7 @@ echo obj: >>/0.x/usr/src/usr.bin/tn3270/makefile
 
 ## XXX-4 #######################################################################
 ##
-## I guess this was moved in from contrib without the makefile being brought
+## I guess rcs was moved in from contrib without the makefile being brought
 ## into the fold.
 echo obj: >>/0.x/usr/src/usr.bin/rcs/Makefile
 
@@ -284,8 +285,8 @@ cd /usr/src/usr.bin/gcc;        (make all && make install && make clean && echo 
 #cd /usr/src/usr.bin/g++;        (make all && make install && make clean)
 cd /usr/src/lib;                (make all && make install && make clean && echo lib done again)
 cd /usr/src/usr.bin/make;       (make all && make install && make clean && echo make done)
-#cd /usr/src;                    (make -k depend && make -k all && \
-#                                 make -k install)
+cd /usr/src;                    (make depend && make all && \
+#                                 make install)
 #cd /usr/src/share/man;          make makedb
 sync; sync; sync; shutdown -rf now
 __EOF__
