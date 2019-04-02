@@ -13,7 +13,7 @@ Getting the original 386bsd 0.1 to boot in emulation was done with hacked up or 
 
 - Hardware free development
 
-This repo will mostly grow by abusing the github.com text editor -> Travis CI -> gh-pages pipeline. Consequently the commit history will look horrible.
+This repo will mostly grow by abusing the github.com text editor -> Travis CI -> gh-pages pipeline. Consequently the commit history will look horrible and you probably don't want to run the script anywhere except for a discardable trusty box.
 
 - Reproducible
 
@@ -21,4 +21,8 @@ By using Travis CI demonstrate this is not a one-off, and someone can use this r
 
 - Trivial code
 
-No piles of C code, just well aimed shell fu and original material. For some reason the grotty sources are missing from groff in 0.1 (and in 0.x). They are pulled in from 0.0.
+No piles of C code, just well aimed shell fu and original material.
+
+- Fixes
+
+Some things are hacked against the 0.x repo because I want the thing to be fully self-hosting with just a few cd/find/rm/mkdir/make incantations. Eg. for some reason the grotty sources are missing from groff in 0.1 (and in 0.x). They are pulled in from 0.0 to get "make world" going.
