@@ -144,6 +144,12 @@ echo obj: >>/0.x/usr/src/usr.bin/rcs/Makefile
     printf '.\nw!\n'
 ) |ex /0.x/usr/src/include/math.h
 
+## XXX-6 #######################################################################
+##
+## Making libg++ breaks on make depend
+echo 'CFLAGS+=-I$(.CURDIR)/../g++-include' >> \
+    /0.x/usr/src/lib/libg++/libg++/Makefile
+
 ## Some reorganisation to solve the high number of differences
 
 ## There is no usr/othersrc in 0.x
