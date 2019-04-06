@@ -1,15 +1,15 @@
 # 386bsd0.x
 Track updates to 0.1 by William Jolitz
 
-W.I.P.
+### W.I.P.
 
-An attempt to create a disk image running https://github.com/386bsd/386bsd/tree/0.1 in an emulator.
+An ongoing attempt to create a disk image running https://github.com/386bsd/386bsd/tree/0.1 in an emulator. The results are pushed to https://dugoh.github.io/386bsd0.x/. 
 
-Some self imposed and boundaries, goals and liberties:
+### Some self imposed and boundaries, goals and liberties:
 
 - Use modern widely available emulators as soon as possible.
 
-Getting the original 386bsd 0.1 to boot in emulation was done with hacked up or older versions of bochs and qemu. Ideally this should run on widely supported builds of bochs/qemu or VirtualBox or even in the browser on one of the js x86 emulators.
+Getting the original 386bsd 0.1 to boot in emulation was done with hacked up or older versions of bochs and qemu. Ideally 386bsd 0.x should run on widely supported builds of bochs/qemu or VirtualBox or even in the browser on one of the js x86 emulators.
 
 - Hardware free development
 
