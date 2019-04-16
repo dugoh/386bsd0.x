@@ -26,3 +26,7 @@ No piles of C code, just well aimed shell fu and original material.
 - Fixes
 
 Some things are hacked against the 0.x repo because I want the thing to be fully self-hosting with just a few cd/find/rm/mkdir/make incantations. Eg. for some reason the grotty sources are missing from groff in 0.1 (and in 0.x). They are pulled in from 0.0 to get "make world" going.
+
+### 15/4 .. Baffled
+
+I already felt lonely caring about this, now (15/4) I got blocked by @386bsd. I don't understand.
