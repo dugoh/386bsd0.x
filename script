@@ -146,9 +146,11 @@ echo obj: >>/0.x/usr/src/usr.bin/rcs/Makefile
 
 ## XXX-6 #######################################################################
 ##
-## Making libg++ breaks on make depend
-echo 'CFLAGS+=-I$(.CURDIR)/../g++-include' >> \
-    /0.x/usr/src/lib/libg++/libg++/Makefile
+## Making libg++ breaks on make depend, this doesn't quickfix it
+####    echo 'CFLAGS+=-I$(.CURDIR)/../g++-include' >> \
+####        /0.x/usr/src/lib/libg++/libg++/Makefile
+## Probably need to fix .mk or Makefiles files to support c++?
+##
 
 ## Some reorganisation to solve the high number of differences
 
