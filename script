@@ -53,6 +53,7 @@ movietime() {
 WFJ_386BSD_REPO=https://github.com/386bsd/386bsd.git
 MY_0_0_GHP=https://dugoh.github.io/386bsd-0.0-archive
 MY_0_1_GHP=https://dugoh.github.io/386bsd0.1
+BRANCH=0.1
 
 ## Start the video camera if we havn't yet
 
@@ -83,7 +84,7 @@ cd /
 ## 75c3124387dda5db245b62552d4da62cf60a82de Nov 2017 <- to test tracking
 ## aeaabcf90cebcb2c70dae2e3f22e0bbead5927a9 Jan 2019 <- current
 
-git clone --depth=50 --branch=0.1 "${WFJ_386BSD_REPO}"
+git clone --depth=50 --branch="${BRANCH}" "${WFJ_386BSD_REPO}"
 cd 386bsd
 git checkout -qf aeaabcf90cebcb2c70dae2e3f22e0bbead5927a9
 cat .gitignore
