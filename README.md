@@ -3,7 +3,7 @@ Track updates to 0.1 by William Jolitz
 
 ### W.I.P.
 
-An ongoing attempt to create a disk image running https://github.com/386bsd/386bsd/tree/0.1 in an emulator. The results are pushed to https://dugoh.github.io/386bsd0.x/. 
+An ongoing attempt to create a disk image running https://github.com/386bsd/386bsd/tree/0.1 in an emulator. The results are pushed to https://dugoh.github.io/386bsd0.x/. The build log is at https://travis-ci.org/dugoh/386bsd0.x. That isn't always readable due to the ANSI codes, so there is a link in there at the bottom to an aciinema asciicast of it, for example https://asciinema.org/a/c6qmJ85fHjuWQtWHewZnS0W1f.
 
 ### Some self imposed and boundaries, goals and liberties:
 
@@ -26,7 +26,3 @@ No piles of C code, just well aimed shell fu and original material.
 - Fixes
 
 Some things are hacked against the 0.x repo because I want the thing to be fully self-hosting with just a few cd/find/rm/mkdir/make incantations. Eg. for some reason the grotty sources are missing from groff in 0.1 (and in 0.x). They are pulled in from 0.0 to get "make world" going.
-
-### 15/4 .. Baffled
-
-I already felt lonely caring about this, now (15/4) I got blocked by @386bsd. I don't understand.
