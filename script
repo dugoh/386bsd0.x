@@ -148,10 +148,14 @@ echo obj: >>/0.x/usr/src/usr.bin/rcs/Makefile
 ## XXX-6 #######################################################################
 ##
 ## Making libg++ breaks on make depend
-    echo 'CFLAGS+=-I$(.CURDIR)/../g++-include -+' >> \
-      /0.x/usr/src/lib/libg++/libg++/Makefile
-    printf '\045s/mkdep.*ID/&+/\nw\n' \
-      |ex /0.x/usr/src/share/mk/bsd.lib.mk
+echo 'CFLAGS+=-I$(.CURDIR)/../g++-include -+' \
+  >> /0.x/usr/src/lib/libg++/libg++/Makefile
+printf '\045s/mkdep.*ID/&+/\nw\n' |ex /0.x/usr/src/share/mk/bsd.lib.mk
+
+## XXX-7 #######################################################################
+##
+## SRCS wrongly listing objects
+printf '\045s/\.o/.c/g\nw\n' |ex /0.x/usr/src/libexec/crond/Makefile
 
 ## Some reorganisation to solve the high number of differences
 
