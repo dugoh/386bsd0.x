@@ -295,7 +295,8 @@ cd /usr/src/usr.bin/groff;
 cd devices;                     (make all && make install && make clean)
 cd /usr/src/lib;                (make all && make install && make clean && echo lib done)
 cd /usr/src/usr.bin/gcc;        (make all && make install && make clean && echo gcc done)
-cd /usr/src/lib;                (make all && make install && make clean && echo lib done again)
+for dir in c* g*; do cd $dir; make config.h; cd ..; done
+cd /usr/src/lib;                (make all >/dev/null 2>&1 && make install && make clean && echo lib done again)
 cd /usr/src/usr.bin/make;       (make all && make install && make clean && echo make done)
 cd /usr/src; make depend && echo big make depend done
 #cd /usr/src;                    (make depend && make all && \
@@ -357,7 +358,7 @@ root
 exec sh
 date; sleep 2
 date
-tail -21 /upgrade.sh >/buildworld.sh
+tail -22 /upgrade.sh >/buildworld.sh
 chmod +x /buildworld.sh
 cat /buildworld.sh
 /buildworld.sh
