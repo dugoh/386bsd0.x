@@ -128,6 +128,8 @@ printf ':2s/$/.c\nw\n' |ex /0.x/usr/src/bin/expr/Makefile
 ## standard with this one.
 printf '\045s/386//\nw\n' |ex /0.x/usr/src/usr.bin/tn3270/api/makefile
 echo obj: >>/0.x/usr/src/usr.bin/tn3270/makefile
+## Take it out for now
+sed -i -e 's/tn3270 //' /0.x/usr/src/usr.bin/Makefile
 
 ## XXX-4 #######################################################################
 ##
