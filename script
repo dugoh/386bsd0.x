@@ -301,10 +301,10 @@ for dir in c* g*; do cd \$dir; make config.h; cd ..; done
 cd /usr/src/lib;                (make all >/dev/null 2>&1 && make install && make clean && echo lib done again)
 cd /usr/src/usr.bin/make;       (make all && make install && make clean && echo make done)
 cd /usr/src; make depend 2>&1 |grep === && echo big make depend done
-cd /usr/src; make all
+cd /usr/src; make all && make install
 #cd /usr/src;                    (make depend && make all && \
 #                                 make install)
-#cd /usr/src/share/man;          make makedb
+cd /usr/src/share/man;          make makedb
 sync; sync; sync; shutdown -rf now
 __EOF__
 chmod +x /0.x/upgrade.sh
