@@ -159,6 +159,12 @@ printf '\045s/mkdep.*ID/&+/\nw\n' |ex /0.x/usr/src/share/mk/bsd.lib.mk
 ## SRCS wrongly listing objects
 printf '\045s/\.o/.c/g\nw\n' |ex /0.x/usr/src/libexec/crond/Makefile
 
+## XXX-8 #######################################################################
+##
+## Bonehead typo
+printf '\045s/\.\.\./& *\//\nw\n' |ex /0.x/usr/src/lib/libc/gen/disklabel.c
+
+
 ## Some reorganisation to solve the high number of differences
 
 ## There is no usr/othersrc in 0.x
