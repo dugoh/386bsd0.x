@@ -1,0 +1,594 @@
+========================================================================
+                       Bochs x86 Emulator 2.4.6
+             Build from CVS snapshot, on February 22, 2011
+                   Compiled at Jun  8 2013, 05:16:04
+========================================================================
+(B)0[1;24r[m[?7h[39;49m[?1h=[39;49m[37m[40m[H[J[39;49m[37m[40m[H[J[14B[37m[40m[J[H[0;1m[36m[40mPlex86/Bochs VGABios (PCI) current-cvs 19 Sep 2012
+This VGA/VBE Bios is released under the GNU LGPL
+
+Please visit :
+ . http://bochs.sourceforge.net
+ . http://www.nongnu.org/vgabios
+
+NO Bochs VBE Support available!
+
+[0m[37m[40mBochs BIOS - build: 06/08/13
+$Revision: 1.257 $ $Date: 2011/01/26 09:52:02 $
+Options: apmbios pcibios pnpbios eltorito
+
+ata0 master: generic ATA-6 Hard-Disk ( 504 MBytes)
+[m[39;49m[37m[40m
+[37m[40mPress F12 for boot menu.
+
+[m[39;49m[37m[40m7[1;18r8
+[1;24r[17;1H[37m[40mBooting from Hard Disk...
+[0;1m[37m[40m386BSD Release 0.1 by William and Lynne Jolitz.[0m[37m[40m [0.1.24  07/14/92 19:07]
+Copyright (c) 1989,1990,1991,1992 William F. Jolitz. All rights reserved.
+Based in part on work by the 386BSD User Community and the
+BSD Networking Software, Release 2 by UCB EECS Department.
+pc0<color> at 0x60 irq 1 on isa
+wd0 <generic> at 0x1f0 irq 14 on isa
+fd0 drives 0: 1.44M at 0x3f0 irq 6 drq 2 on isa[m[39;49m[37m[40m
+
+[1A[37m[40mne0 ethernet address fe:fd:00:00:00:01 at 0x300 irq 9 on isa
+npx0 at 0xf0 irq 13 on isa[24;48H[m[39;49m[37m[40m
+[0;1m[33m[44mAutomatic reboot in progress...[m[39;49m[37m[40m[48C
+
+[1A[0;1m[33m[44m/dev/rwd0a: 13191 files, 180963 used, 312684 free (708 frags, 38997 blocks, 0.1%[24;1H fragmentation)[K[64C[m[39;49m[37m[40m
+[0;1m[33m[44mstarting network[K[63C[m[39;49m[37m[40m
+
+[1A[0;1m[33m[44mstarting system logger.[K
+checking for core dump...[K[m[39;49m[37m[40m
+[0;1m[33m[44mpreserving editor files[K  [m[39;49m[37m[40m
+[0;1m[33m[44mclearing /tmp[K[24;24H[m[39;49m[37m[40m
+[0;1m[33m[44mstandard daemons: update crond.[K[m[39;49m[37m[40m
+[0;1m[33m[44mstarting network daemons: routed printer sendmail inetd.[K[m[39;49m[37m[40m[23C
+[0;1m[33m[44mstarting local daemons:.[K[55C[m[39;49m[37m[40m
+[0;1m[33m[44mMon Jun 21 20:49:46 PDT 1993[K[m[39;49m[37m[40m[51C
+
+
+[37m[40m[J[2A[0;1m[33m[44m[K
+[3C[0m[37m[40m386BSD (odin) (console)
+[53C[m[39;49m[37m[40m
+
+
+
+
+
+
+[37m[40m[J[6Alogin: root
+386BSD Release 0.1 by William and Lynne Jolitz.
+Copyright (c) 1989,1990,1991,1992 William F. Jolitz. All rights reserved.
+Based in part on work by the 386BSD User Community and the
+BSD Networking Software, Release 2 by UCB EECS Department.
+386BSD 0.1.24  07/14/92 19:07[m[39;49m[37m[40m
+
+[37m[40mDon't login as root, use su[m[39;49m[37m[40m
+[37m[40modin #[24;28H[m[39;49m[37m[40m
+
+
+
+[3A[37m[40modin # disklabel -r wd0
+# /dev/rwd0d:
+type: ESDI
+disk: ESDI/IDE[m[39;49m[37m[40m[H[37m[40modin # disklabel -r wd0[K
+# /dev/rwd0d:[K
+type: ESDI[K
+disk: ESDI/IDE[K
+label:[K
+flags:[K
+bytes/sector: 512[K
+sectors/track: 63[K
+tracks/cylinder: 16[K
+sectors/cylinder: 1008[K
+cylinders: 1024
+rpm: 3600[K
+interleave: 1[K
+trackskew: 0[K
+cylinderskew: 0[K
+headswitch: 0           # milliseconds[K
+track-to-track seek: 0  # milliseconds
+drivedata: 0
+[K
+3 partitions:
+#        size   offset    fstype   [fsize bsize   cpg]
+  a:  1020096[22;22H0    4.2BSD     1024  8192    16   # (Cyl.    0 - 1011)
+  b:    10000  1020684    unused[23;41H0     0[23;57H# (Cyl. 1012*- 1022*)
+  c:  1031184 [7C0    unused[24;41H0     0[24;57H# (Cyl.    0 - 1022)[m[39;49m[37m[40m
+[37m[40modin # cd /[65C[m[39;49m[37m[40m
+[37m[40modin # tar -xvf /dev/rfd0a .//upgrade.sh[m[39;49m[37m[40m[39C
+[37m[40m.//upgrade.sh[24;41H[m[39;49m[37m[40m[39C
+
+
+
+
+
+
+[6A[37m[40mcodin # sh -x /upgrade.sh
+date 1904281030.38
+Jun 21 20:56:43 odin syslog: date set by root
+Jun 21 20:56:43 odin syslog: date set by root
+Sun Apr 28 10:30:43 PDT 2019
+mv /usr/othersrc/contrib /usr/othersrc/etc /usr/othersrc/games /usr/othersrc/pub[24;1Hlic /usr/othersrc/share /usr/src/[m[39;49m[37m[40m
+
+
+
+
+
+
+
+[7A[37m[40mrm -rf /usr/othersrc/
+rm: /usr/othersrc/: Is a directory.
+find /usr/share/games/atc /usr/share/games/ching /usr/share/games/fortune /usr/s[20;1Hhare/games/gnuchess.book /usr/share/games/larn /usr/share/games/quiz.db -type d
+-exec rm -rf {} ;
+find: /usr/share/games/atc: No such file or directory
+find: /usr/share/games/ching: No such file or directory
+find: /usr/share/games/fortune: No such file or directory[22C[m[39;49m[37m[40m
+
+
+
+
+[4A[37m[40mfind: /usr/share/games/larn: No such file or directory
+find: /usr/share/games/quiz.db: No such file or directory
+rm -rf /usr/include/vm
+ln -s /usr/src/sys.386bsd/vm /usr/include/vm
+cp -R -p /usr/src/sys.386bsd/ufs /usr/src/[37C[m[39;49m[37m[40m
+[37m[40mtar -xvf /dev/rfd0a[60C[m[39;49m[37m[40m
+
+
+
+[3A[37m[40m./etc/bin.profile
+./etc/disktab
+.//upgrade.sh
+./usr/src/bin/csh/dir.c[m[39;49m[37m[40m[56C
+[37m[40m./usr/src/bin/expr/Makefile[m[39;49m[37m[40m
+[37m[40m./usr/src/include/math.h   [m[39;49m[37m[40m[52C
+[37m[40m./usr/src/lib/libc/gen/crypt.c[49C[m[39;49m[37m[40m
+[37m[40m./usr/src/lib/libc/gen/disklabel.c[m[39;49m[37m[40m[45C
+[37m[40m./usr/src/lib/libc/gen/Makefile.inc[44C[m[39;49m[37m[40m
+
+
+[2A[37m[40m./usr/src/lib/libg++/libg++/Makefile
+./usr/src/libexec/crond/Makefile
+./usr/src/sbin/disklabel/disklabel.c[m[39;49m[37m[40m[43C
+[37m[40m./usr/src/sbin/init/init.c[24;37H[m[39;49m[37m[40m[43C
+
+[1A[37m[40m./usr/src/share/mk/bsd.lib.mk
+./usr/src/sys.386bsd/i386/conf/Makefile.i386[35C[m[39;49m[37m[40m
+
+[1A[37m[40m./usr/src/sys.386bsd/i386/conf/QEMU
+./usr/src/sys.386bsd/i386/i386/autoconf.c   [m[39;49m[37m[40m[35C
+
+[1A[37m[40m./usr/src/sys.386bsd/i386/i386/cons.c
+./usr/src/sys.386bsd/i386/i386/machdep.c[39C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/i386/i386/math_emulate.c[34C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/i386/isa/clock.c[42C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/i386/isa/com.c  [m[39;49m[37m[40m[42C
+[37m[40m./usr/src/sys.386bsd/i386/isa/fd.c [m[39;49m[37m[40m[44C
+[37m[40m./usr/src/sys.386bsd/i386/isa/pccons.c[41C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/i386/isa/rtc.h   [m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/i386/isa/wd.c[45C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/i386/stand/boot.c[41C[m[39;49m[37m[40m
+
+[1A[37m[40m./usr/src/sys.386bsd/i386/stand/breadfd.c
+./usr/src/sys.386bsd/i386/stand/breadwd.c[m[39;49m[37m[40m[38C
+[37m[40m./usr/src/sys.386bsd/i386/stand/fdbootblk0.c[35C[m[39;49m[37m[40m
+
+[1A[37m[40m./usr/src/sys.386bsd/i386/stand/fdbootblk1.c
+./usr/src/sys.386bsd/i386/stand/fdbootblk.c [m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/i386/stand/fd.c[43C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/i386/stand/kbd.c[42C[m[39;49m[37m[40m
+
+[1A[37m[40m./usr/src/sys.386bsd/i386/stand/Makefile
+./usr/src/sys.386bsd/i386/stand/newdl[m[39;49m[37m[40m[42C
+
+[1A[37m[40m./usr/src/sys.386bsd/i386/stand/splice.c
+./usr/src/sys.386bsd/i386/stand/srt0.c[41C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/i386/stand/wd1.0.c[m[39;49m[37m[40m[40C
+[37m[40m./usr/src/sys.386bsd/i386/stand/wdbootblk1.0.c[33C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/i386/stand/wdbootblk.c   [m[39;49m[37m[40m[33C
+
+
+[2A[37m[40m./usr/src/sys.386bsd/i386/stand/wdbootblk-x.c
+./usr/src/sys.386bsd/i386/stand/wdbx
+./usr/src/sys.386bsd/i386/stand/wdbx.s[41C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/i386/stand/wd.c  [m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/kern/kern_synch.c[41C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/kern/uipc_mbuf.c [m[39;49m[37m[40m[41C
+[37m[40m./usr/src/sys.386bsd/kern/vfs__bio.c[43C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/kern/vfs_lookup.c[m[39;49m[37m[40m[41C
+[37m[40m./usr/src/sys.386bsd/netinet/raw_ip.c [m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/nfs/nfs_serv.c[44C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/sys/buf.h[49C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/sys/disklabel.h[m[39;49m[37m[40m[43C
+[37m[40m./usr/src/sys.386bsd/sys/tty.h[49C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/ufs/ufs_alloc.c[m[39;49m[37m[40m[43C
+[37m[40m./usr/src/sys.386bsd/vm/swap_pager.c[43C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/vm/vm_map.h    [m[39;49m[37m[40m[43C
+[37m[40m./usr/src/sys.386bsd/vm/vm_page.c[46C[m[39;49m[37m[40m
+[37m[40m./usr/src/sys.386bsd/vm/vm_pageout.c[43C[m[39;49m[37m[40m
+
+[1A[37m[40m./usr/src/usr.bin/groff/grotty/
+./usr/src/usr.bin/groff/grotty/grotty.cc[m[39;49m[37m[40m[39C
+
+
+[2A[37m[40m./usr/src/usr.bin/groff/grotty/Makefile
+./usr/src/usr.bin/groff/grotty/TODO
+./usr/src/usr.bin/groff/grotty/grotty.1[40C[m[39;49m[37m[40m
+[37m[40m./usr/src/usr.bin/groff/grotty/Makefile.gnu[m[39;49m[37m[40m
+[37m[40m./usr/src/usr.bin/login/login.c[24;44H[m[39;49m[37m[40m[36C
+
+
+
+[3A[37m[40m./usr/src/usr.bin/Makefile
+./usr/src/usr.bin/passwd/local_passwd.c
+./usr/src/usr.bin/rcs/Makefile
+./usr/src/usr.bin/tn3270/api/makefile[42C[m[39;49m[37m[40m
+
+[1A[37m[40m./usr/src/usr.bin/tn3270/makefile
+./usr/src/usr.sbin/config/mkmakefile.c[m[39;49m[37m[40m[41C
+
+
+
+[3A[37m[40mrm -r /sys/compile/GENERICISA
+set old=/
+chdir /sys/i386/conf
+config GENERICISA[24;39H[m[39;49m[37m[40m
+
+
+
+[3A[37m[40mDon't forget to run "make depend"
+set old=/sys/i386/conf
+chdir /sys/compile/GENERICISA
+make depend[6C[m[39;49m[37m[40m
+
+
+[2A[37m[40mcc  -I. -I../.. -I../../sys -DKERNEL -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPA[23;1HT_43 -DNFS -DISOFS -DINET -DTIMEZONE=480 -DDST=1 -DMAXUSERS=10  ../../i386/i386/[24;1Hgenassym.c -o genassym[57C[m[39;49m[37m[40m
+[37m[40m./genassym >assym.s   [m[39;49m[37m[40m[H[37m[40mut ../../vm/vm_mmap.c ../../vm/vm_object.c  ../../vm/vm_page.c ../../vm/vm_pageo[2;1Hut.c ../../vm/vm_pager.c  ../../vm/vm_swap.c ../../vm/vm_unix.c ../../vm/vm_user[3;2Hc  ../../vm/device_pager.c ../../vm/swap_pager.c ../../vm/vnode_pager.c  ../../[4;1Hufs/ufs_alloc.c ../../ufs/ufs_bmap.c ../../ufs/ufs_disksubr.c  ../../ufs/ufs_ino[5;1Hde.c ../../ufs/ufs_lockf.c ../../ufs/ufs_lookup.c  ../../ufs/ufs_subr.c ../../uf[6;1Hs/ufs_tables.c ../../ufs/ufs_vfsops.c  ../../ufs/ufs_vnops.c ../../nfs/nfs_bio.c[7;1H ../../nfs/nfs_node.c  ../../nfs/nfs_serv.c ../../nfs/nfs_socket.c ../../nfs/nfs[8;1H_srvcache.c  ../../nfs/nfs_subs.c ../../nfs/nfs_syscalls.c ../../nfs/nfs_vfsops.[9;1Hc  ../../nfs/nfs_vnops.c ../../net/af.c ../../net/if.c ../../net/if_ethersubr.c
+ ../../net/if_loop.c ../../net/if_sl.c ../../net/raw_cb.c  ../../net/raw_usrreq.[11;1Hc ../../net/radix.c ../../net/route.c  ../../net/rtsock.c ../../net/slcompress.c[12;1H ../../netinet/if_ether.c  ../../netinet/in.c ../../netinet/in_pcb.c ../../netin[13;1Het/in_proto.c  ../../netinet/ip_icmp.c ../../netinet/ip_input.c  ../../netinet/i[14;1Hp_output.c ../../netinet/raw_ip.c  ../../netinet/tcp_debug.c ../../netinet/tcp_i[15;1Hnput.c  ../../netinet/tcp_output.c ../../netinet/tcp_subr.c  ../../netinet/tcp_t[16;1Himer.c ../../netinet/tcp_usrreq.c  ../../netinet/udp_usrreq.c ../../isofs/isofs_[17;1Hbmap.c  ../../isofs/isofs_lookup.c ../../isofs/isofs_node.c  ../../isofs/isofs_u[18;1Htil.c ../../isofs/isofs_vfsops.c  ../../isofs/isofs_vnops.c ../../i386/i386/auto[19;2Honf.c  ../../i386/i386/cons.c ../../i386/isa/pccons.c ../../i386/isa/clock.c  .[20;1H./../i386/i386/in_cksum.c ../../i386/i386/machdep.c  ../../i386/i386/math_emulat[21;1He.c ../../i386/i386/mem.c  ../../i386/i386/pmap.c ../../i386/i386/sys_machdep.c[K
+ ../../i386/i386/trap.c ../../i386/i386/vm_machdep.c  ../../i386/isa/if_ne.c ..
+../i386/isa/if_we.c ../../i386/isa/if_ec.c  ../../i386/isa/if_is.c ../../i386/is[24;1Ha/wd.c ../../i386/isa/fd.c  ../../i386/isa/wt.c ../../i386/isa/isa.c ../../i386[?7l/[?7h[m[39;49m[37m[40m
+[37m[40misa/com.c  ../../i386/isa/npx.c ../../i386/isa/as.c swap386bsd.c  ioconf.c[5C[m[39;49m[37m[40m
+
+
+[2A[37m[40msh /usr/bin/mkdep -a -p -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT[23;1H_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DTIMEZONE=480 -DDST=1 -DMAXUSERS=10 ../../[24;1Hi386/i386/genassym.c[59C[m[39;49m[37m[40m
+[37m[40mmake[24;21H[m[39;49m[37m[40m[59C
+
+[1A[37m[40mgrep -v '^#' ../../i386/i386/symbols.raw  | sed 's/^    //' | sort -u > symbols.[24;1Hsort[75C[m[39;49m[37m[40m
+
+
+[2A[37m[40mcpp -I. -DLOCORE -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DC[23;1HOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX ../../i386/i386/locore.s |
+as  -o locore.o[64C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/init_main.c[m[39;49m[37m[40m[11C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/init_sysent.c[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_acct.c  [m[39;49m[37m[40m[9C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_clock.c[10C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_descrip.c[8C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_execve.c [m[39;49m[37m[40m[8C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_exit.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_fork.c[m[39;49m[37m[40m[13C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_kinfo.c[10C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_ktrace.c[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_malloc.c[m[39;49m[37m[40m[11C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern__physio.c[8C[m[39;49m[37m[40m
+
+
+[2A[37m[40m../../kern/kern__physio.c: In function physio:
+../../kern/kern__physio.c:123: warning: assignment of pointer from integer lacks[24;2Ha cast[24;72H[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_proc.c[m[39;49m[37m[40m[11C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_prot.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_resource.c[m[39;49m[37m[40m[7C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_sig.c[12C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_subr.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_synch.c[m[39;49m[37m[40m[10C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_time.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/kern_xxx.c [m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/dead_vnops.c[m[39;49m[37m[40m[10C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/spec_vnops.c[10C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/subr_log.c[12C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/subr_prf.c[12C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/subr_rlist.c[10C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/subr_xxx.c[12C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/sys_generic.c[m[39;49m[37m[40m[9C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/sys_process.c[9C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/sys_socket.c [m[39;49m[37m[40m[9C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/tty.c[17C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/tty_compat.c[m[39;49m[37m[40m[10C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/tty_conf.c[12C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/tty_pty.c [m[39;49m[37m[40m[12C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/tty_ring.c[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/tty_tty.c [m[39;49m[37m[40m[12C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vfs__bio.c[12C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vfs_cache.c[m[39;49m[37m[40m[11C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vfs_conf.c[12C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vfs_lookup.c[10C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vfs_subr.c  [m[39;49m[37m[40m[10C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vfs_syscalls.c[8C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vfs_vnops.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/uipc_domain.c[m[39;49m[37m[40m[9C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/uipc_mbuf.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/uipc_proto.c[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/uipc_socket.c[m[39;49m[37m[40m[9C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/uipc_socket2.c[8C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/uipc_syscalls.c[7C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/uipc_usrreq.c[9C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/kern_lock.c[13C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_fault.c[14C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_glue.c[15C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_init.c[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_kern.c[15C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_map.c [m[39;49m[37m[40m[15C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_meter.c[14C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_mmap.c[15C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_object.c[13C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_page.c  [m[39;49m[37m[40m[13C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_pageout.c[12C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_pager.c  [m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_swap.c [m[39;49m[37m[40m[14C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_unix.c[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_user.c[m[39;49m[37m[40m[17C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/device_pager.c[10C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/swap_pager.c  [m[39;49m[37m[40m[10C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vnode_pager.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs_alloc.c [m[39;49m[37m[40m[11C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs_bmap.c [m[39;49m[37m[40m[12C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs_disksubr.c[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs_inode.c[12C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs_lockf.c[m[39;49m[37m[40m[14C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs_lookup.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs_subr.c[13C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs_tables.c[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs_vfsops.c[m[39;49m[37m[40m[14C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs_vnops.c [m[39;49m[37m[40m[11C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs_bio.c  [m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs_node.c[13C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs_serv.c[13C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs_socket.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs_srvcache.c[9C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs_subs.c    [m[39;49m[37m[40m[9C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs_syscalls.c[m[39;49m[37m[40m[9C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs_vfsops.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs_vnops.c[12C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/af.c[19C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/if.c[m[39;49m[37m[40m[22C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/if_ethersubr.c[9C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/if_loop.c[5C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/if_sl.c[16C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/raw_cb.c[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/raw_usrreq.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/radix.c[16C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/route.c[m[39;49m[37m[40m[18C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/rtsock.c[m[39;49m[37m[40m[15C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/slcompress.c[m[39;49m[37m[40m[11C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/if_ether.c[9C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/in.c[6C[m[39;49m[37m[40m[9C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/in_pcb.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/in_proto.c[m[39;49m[37m[40m[9C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/ip_icmp.c[10C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/ip_input.c[m[39;49m[37m[40m[9C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/ip_output.c[m[39;49m[37m[40m[8C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/raw_ip.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/tcp_debug.c[m[39;49m[37m[40m[8C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/tcp_input.c[8C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/tcp_output.c[7C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/tcp_subr.c  [m[39;49m[37m[40m[7C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/tcp_timer.c[8C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/tcp_usrreq.c[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet/udp_usrreq.c[7C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../isofs/isofs_bmap.c  [m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../isofs/isofs_lookup.c[m[39;49m[37m[40m[7C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../isofs/isofs_node.c[9C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../isofs/isofs_util.c[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../isofs/isofs_vfsops.c[7C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../isofs/isofs_vnops.c [m[39;49m[37m[40m[7C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i386/autoconf.c[7C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i386/cons.c    [m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/pccons.c[m[39;49m[37m[40m[10C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/clock.c [m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i386/in_cksum.c[m[39;49m[37m[40m[7C
+
+
+[2A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[23;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  -DTIMEZONE=480 -DDST=1 -DMAXUSERS=[24;1H10 ../../i386/i386/machdep.c[51C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i386/math_emulate.c   [m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i386/mem.c[12C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i386/pmap.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i386/sys_machdep.c    [m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i386/trap.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i386/vm_machdep.c[m[39;49m[37m[40m[5C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/if_ne.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/if_we.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/if_ec.c[m[39;49m[37m[40m[13C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/if_is.c[11C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/wd.c[14C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/fd.c[14C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/wt.c[m[39;49m[37m[40m[16C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/isa.c[m[39;49m[37m[40m[13C
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/com.c[13C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/npx.c[13C[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/isa/as.c[14C[m[39;49m[37m[40m
+
+
+[2A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[23;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX -DTIMEZONE=480 -DDST=1 -DMAXUSERS=1[24;1H0 param.c[24;66H[m[39;49m[37m[40m[14C
+[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_[?7l4[?7h[m[39;49m[37m[40m
+[37m[40m3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX ioconf.c[26C[m[39;49m[37m[40m
+
+
+[37m[40m[J[2Acc  -traditional -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_[23;1H42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX ../../i386/i386/conf.c[24;80H[m[39;49m[37m[40m
+
+[1A[37m[40mcc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DTCP_COMPAT_42 -DCOMPAT_4[24;1H3 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  swap386bsd.c[m[39;49m[37m[40m
+[37m[40mloading 386bsd[24;59H[m[39;49m[37m[40m[21C
+[37m[40mrearranging symbols[60C[m[39;49m[37m[40m
+
+[1A[37m[40mtext    data    bss     dec     hex
+376832  20480   129036  526348  8080c[m[39;49m[37m[40m
+
+
+[2A[37m[40mmv /386bsd /386bsd.old
+cp 386bsd /386bsd
+sync[24;38H[m[39;49m[37m[40m
+
+
+
+
+[4A[37m[40msync
+sync
+shutdown -rf now
+Shutdown NOW!
+shutdown: [pid 1020][m[39;49m[37m[40m
+
+
+
+
+
+
+
+[6A[37m[40m*** FINAL System shutdown message from root@odin ***
+System going down IMMEDIATELY
+
+
+Apr 28 10:32:21 odin shutdown: reboot by root:
+Apr 28 10:32:21 odin shutdown: reboot by root:
+exit[24;21H[m[39;49m[37m[40m
+
+[1A[37m[40modin #
+System shutdown time has arrived[m[39;49m[37m[40m[47C[39;49m[37m[40m[H[J[39;49m[23B[K[24;1H[?1l>
